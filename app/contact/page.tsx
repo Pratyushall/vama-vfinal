@@ -45,7 +45,7 @@ export default function ContactPage() {
                     </Label>
                     <Input
                       id="firstName"
-                      placeholder="John"
+                      placeholder="Your"
                       className="bg-white/95 text-[#0D4341] border border-white/40 focus-visible:ring-white/70"
                     />
                   </div>
@@ -55,7 +55,7 @@ export default function ContactPage() {
                     </Label>
                     <Input
                       id="lastName"
-                      placeholder="Doe"
+                      placeholder="Name"
                       className="bg-white/95 text-[#0D4341] border border-white/40 focus-visible:ring-white/70"
                     />
                   </div>
@@ -68,7 +68,7 @@ export default function ContactPage() {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="john@example.com"
+                    placeholder="you@example.com"
                     className="bg-white/95 text-[#0D4341] border border-white/40 focus-visible:ring-white/70"
                   />
                 </div>
