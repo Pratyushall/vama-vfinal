@@ -12,10 +12,10 @@ import {
   UtensilsCrossed,
   Armchair,
   Briefcase,
-  Coffee,
-  Building,
-  Hotel,
   Boxes,
+  Building,
+  Coffee,
+  Hotel,
 } from "lucide-react";
 import {
   Carousel,
@@ -24,37 +24,15 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import type React from "react";
 
-type CategorySlide = {
-  src: string;
-  alt: string;
-};
-
-type Category = {
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  title: string;
-  description: string;
-  slides: CategorySlide[];
-  /** per-section background (for the whole block) */
-  background?: string;
-};
-
-// ✨ Palette – change this hex to tweak Residential highlight
-const RESIDENTIAL_ACCENT = "#F3CBA7"; // try replacing with any #HEX you like
-const COMMERCIAL_ACCENT = "#D4ECE7"; // soft muted teal
-
-// Different BGs for residential vs commercial section (overall tone)
-const RESIDENTIAL_BG = "#0B3B38";
-const COMMERCIAL_BG = "#062629";
-
-const residentialCategories: Category[] = [
+// Declare variables
+const residentialCategories = [
   {
     icon: Sofa,
     title: "Sofas & Loungers",
     description:
       "Deep, sink-in sofas, loungers and sectionals tailored to your living room layout.",
-    background: "#0B3B38",
+    background: "#F48587",
     slides: [
       {
         src: "/images/sofa1.jpg",
@@ -83,7 +61,7 @@ const residentialCategories: Category[] = [
     title: "Beds & Headboards",
     description:
       "Custom beds, backrests and side tables that actually match your room story.",
-    background: "#0A3530",
+    background: "#A55457",
     slides: [
       {
         src: "/images/bed1.jpg",
@@ -112,7 +90,7 @@ const residentialCategories: Category[] = [
     title: "Chairs & Accent Pieces",
     description:
       "Armchairs, loungers, reading chairs and accent pieces that pull a room together.",
-    background: "#0D4341",
+    background: "#F48587",
     slides: [
       {
         src: "/images/chair1.jpg",
@@ -141,7 +119,7 @@ const residentialCategories: Category[] = [
     title: "Dining Sets",
     description:
       "Dining tables, chairs and sideboards built for everyday use and weekend hosting.",
-    background: "#08302C",
+    background: "#A55457",
     slides: [
       {
         src: "/work/residential/dining-1.jpg",
@@ -167,13 +145,13 @@ const residentialCategories: Category[] = [
   },
 ];
 
-const kidsCategories: Category[] = [
+const kidsCategories = [
   {
     icon: Bed,
     title: "Kids Beds & Bunks",
     description:
       "Bunk beds, pull-outs and playful setups that keep siblings happy and safe.",
-    background: "#0A3430",
+    background: "#F48587",
     slides: [
       {
         src: "/work/residential/kids-beds-1.jpg",
@@ -202,7 +180,7 @@ const kidsCategories: Category[] = [
     title: "Kids Storage & Study",
     description:
       "Study tables, bookshelves and toy storage that actually make space.",
-    background: "#0B3935",
+    background: "#A55457",
     slides: [
       {
         src: "/work/residential/kids-storage-1.jpg",
@@ -228,13 +206,13 @@ const kidsCategories: Category[] = [
   },
 ];
 
-const commercialCategories: Category[] = [
+const commercialCategories = [
   {
     icon: Briefcase,
     title: "Ergonomic Chairs",
     description:
       "Task chairs and executive seating customised for long hours and different roles.",
-    background: "#062629",
+    background: "#F48587",
     slides: [
       {
         src: "/work/commercial/chairs-1.jpg",
@@ -263,7 +241,7 @@ const commercialCategories: Category[] = [
     title: "Workstations & Tables",
     description:
       "Linear workstations, islands and manager desks planned for your floor plate.",
-    background: "#053133",
+    background: "#A55457",
     slides: [
       {
         src: "/work/commercial/workstations-1.jpg",
@@ -292,7 +270,7 @@ const commercialCategories: Category[] = [
     title: "Cafés & Breakout Zones",
     description:
       "Pantry, café corners and breakout seating that make teams actually use the space.",
-    background: "#073338",
+    background: "#F48587",
     slides: [
       {
         src: "/work/commercial/cafe-1.jpg",
@@ -321,7 +299,7 @@ const commercialCategories: Category[] = [
     title: "Reception & Lobbies",
     description:
       "Reception desks, waiting lounges and lobby setups that feel like your brand.",
-    background: "#052528",
+    background: "#A55457",
     slides: [
       {
         src: "/work/commercial/reception-1.jpg",
@@ -353,263 +331,232 @@ export default function WorkPage() {
   );
 
   const isResidential = activeTab === "residential";
-  const accentColor = isResidential ? RESIDENTIAL_ACCENT : COMMERCIAL_ACCENT;
   const currentCategories = isResidential
     ? residentialCategories
     : commercialCategories;
-  const workBgColor = isResidential ? RESIDENTIAL_BG : COMMERCIAL_BG;
 
   return (
-    <div className="min-h-screen bg-[#686604bd] text-white">
+    <div className="min-h-screen bg-[#0D4341]">
       <Header />
 
       <main>
-        {/* Hero only – no tabs inside card now */}
-        <section className="pt-32 pb-8">
-          <div className="container mx-auto px-6">
-            <div className="max-w-3xl mx-auto rounded-2xl border border-white/15 bg-white/5 backdrop-blur-xl px-8 py-10 md:px-12 md:py-12 shadow-[0_22px_80px_rgba(0,0,0,0.55)]">
-              <div className="mb-2 text-center space-y-3">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight text-balance">
-                  Furniture that fits the{" "}
-                  <span className="underline decoration-white/50 underline-offset-8">
-                    space
-                  </span>
-                </h2>
-              </div>
+        <section className="pt-32 pb-16 bg-[#467891] relative overflow-hidden">
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-[120px]" />
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-black/20 rounded-full blur-[140px]" />
+          </div>
+
+          <div className="container mx-auto px-6 relative">
+            <div className="max-w-4xl mx-auto text-center space-y-6">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold leading-[1.1] tracking-tight text-pretty">
+                Furniture that
+                <br />
+                <span className="relative inline-block">
+                  <span className="relative z-10">fits your space</span>
+                  <span className="absolute bottom-2 left-0 right-0 h-3 bg-white/20 -z-0" />
+                </span>
+              </h1>
+              <p className="text-lg md:text-xl text-white/60 font-light tracking-wide">
+                Custom-made to measure
+              </p>
             </div>
           </div>
         </section>
 
-        {/* GLASS TABS STRIP – below hero */}
-        <section className="border-t border-white/10 bg-transparent">
+        <section className="bg-white/5 py-8 border-t border-white/10 sticky top-[72px] z-30 backdrop-blur-xl">
           <div className="container mx-auto px-4 md:px-6">
-            <div className="mt-4 md:mt-6 flex w-full gap-3 md:gap-4 max-w-5xl mx-auto">
-              {/* Residential tab */}
+            <div className="flex w-full gap-4 md:gap-6 max-w-3xl mx-auto">
               <button
                 type="button"
                 onClick={() => setActiveTab("residential")}
                 className={[
-                  "flex-1 rounded-2xl md:rounded-3xl px-4 md:px-6 py-3.5 md:py-4",
-                  "text-[11px] md:text-xs lg:text-sm font-serif font-semibold uppercase tracking-[0.28em]",
-                  "border bg-white/7 backdrop-blur-xl",
-                  "transition-all duration-500 ease-[cubic-bezier(0.22,0.61,0.36,1)]",
-                  "hover:-translate-y-[2px] hover:scale-[1.01]",
-                  "hover:shadow-[0_18px_45px_rgba(0,0,0,0.65)]",
+                  "group relative flex-1 rounded-3xl px-8 py-5 overflow-hidden",
+                  "text-sm md:text-base lg:text-lg font-serif font-semibold uppercase tracking-[0.35em]",
+                  "transition-all duration-700 ease-out",
                   activeTab === "residential"
-                    ? "text-[#301a11] shadow-[0_18px_55px_rgba(0,0,0,0.75)] border-white/60"
-                    : "text-white/70 border-white/20 hover:border-white/40",
+                    ? "scale-105"
+                    : "scale-100 hover:scale-[1.02]",
                 ].join(" ")}
-                style={
-                  activeTab === "residential"
-                    ? {
-                        background: `linear-gradient(135deg, ${RESIDENTIAL_ACCENT}, rgba(12, 12, 12, 0.35))`,
-                      }
-                    : {
-                        background:
-                          "linear-gradient(135deg, rgba(255,255,255,0.10), rgba(0,0,0,0.25))",
-                      }
-                }
               >
-                Residential
+                <div
+                  className={[
+                    "absolute inset-0 border backdrop-blur-2xl transition-all duration-700",
+                    activeTab === "residential"
+                      ? "bg-white/15 border-white/40 shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
+                      : "bg-white/5 border-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.3)]",
+                  ].join(" ")}
+                  style={{ borderRadius: "inherit" }}
+                />
+
+                {activeTab === "residential" && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
+                )}
+
+                <span
+                  className={[
+                    "relative z-10 transition-colors duration-500",
+                    activeTab === "residential"
+                      ? "text-white"
+                      : "text-white/50",
+                  ].join(" ")}
+                >
+                  Residential
+                </span>
               </button>
 
-              {/* Commercial tab */}
               <button
                 type="button"
                 onClick={() => setActiveTab("commercial")}
                 className={[
-                  "flex-1 rounded-2xl md:rounded-3xl px-4 md:px-6 py-3.5 md:py-4",
-                  "text-[11px] md:text-xs lg:text-sm font-serif font-semibold uppercase tracking-[0.28em]",
-                  "border bg-white/7 backdrop-blur-xl",
-                  "transition-all duration-500 ease-[cubic-bezier(0.22,0.61,0.36,1)]",
-                  "hover:-translate-y-[2px] hover:scale-[1.01]",
-                  "hover:shadow-[0_18px_45px_rgba(0,0,0,0.65)]",
+                  "group relative flex-1 rounded-3xl px-8 py-5 overflow-hidden",
+                  "text-sm md:text-base lg:text-lg font-serif font-semibold uppercase tracking-[0.35em]",
+                  "transition-all duration-700 ease-out",
                   activeTab === "commercial"
-                    ? "text-[#062d2b] shadow-[0_18px_55px_rgba(0,0,0,0.75)] border-white/60"
-                    : "text-white/70 border-white/20 hover:border-white/40",
+                    ? "scale-105"
+                    : "scale-100 hover:scale-[1.02]",
                 ].join(" ")}
-                style={
-                  activeTab === "commercial"
-                    ? {
-                        background: `linear-gradient(135deg, ${COMMERCIAL_ACCENT}, rgba(3, 35, 35, 0.65))`,
-                      }
-                    : {
-                        background:
-                          "linear-gradient(135deg, rgba(255,255,255,0.10), rgba(0,0,0,0.25))",
-                      }
-                }
               >
-                Commercial
+                <div
+                  className={[
+                    "absolute inset-0 border backdrop-blur-2xl transition-all duration-700",
+                    activeTab === "commercial"
+                      ? "bg-white/15 border-white/40 shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
+                      : "bg-white/5 border-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.3)]",
+                  ].join(" ")}
+                  style={{ borderRadius: "inherit" }}
+                />
+
+                {activeTab === "commercial" && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
+                )}
+
+                <span
+                  className={[
+                    "relative z-10 transition-colors duration-500",
+                    activeTab === "commercial" ? "text-white" : "text-white/50",
+                  ].join(" ")}
+                >
+                  Commercial
+                </span>
               </button>
             </div>
           </div>
         </section>
 
-        {/* Work Section – background switches per tab */}
         <section
-          className="py-20 md:py-24 border-t border-white/15"
-          style={{ backgroundColor: workBgColor }}
+          className="py-24 md:py-32"
+          style={{ backgroundColor: isResidential ? "#8ab3c7" : "#467891" }}
         >
           <div className="container mx-auto px-6">
-            <div className="flex items-center justify-between gap-4 mb-10 md:mb-14">
-              <h3 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold">
+            <div className="max-w-5xl mx-auto mb-16">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-balance leading-tight">
                 {isResidential
-                  ? "Rooms we keep coming back to."
-                  : "Spaces that actually get used."}
-              </h3>
-              <div className="hidden md:flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-white/50">
-                <span
-                  className="inline-block h-2 w-2 rounded-full"
-                  style={{ backgroundColor: accentColor }}
-                />
-                <span>
-                  {isResidential ? "Home projects" : "Commercial work"}
-                </span>
-              </div>
+                  ? "Spaces worth coming home to"
+                  : "Workspaces built for focus"}
+              </h2>
             </div>
 
-            {/* ONE BIG CARD PER ROW – each in its own section with its own bg */}
-            <div className="space-y-10 md:space-y-12 max-w-5xl mx-auto">
+            <div className="space-y-12 md:space-y-16 max-w-6xl mx-auto">
               {currentCategories.map((category) => {
                 const Icon = category.icon;
                 return (
-                  <section
-                    key={category.title}
-                    className="rounded-[1.75rem] px-1.5 md:px-2 py-6 md:py-8"
-                    style={{
-                      backgroundColor: category.background ?? workBgColor,
-                    }}
-                  >
-                    <Card className="group relative overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl text-white rounded-3xl shadow-[0_18px_60px_rgba(0,0,0,0.6)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_28px_90px_rgba(0,0,0,0.8)]">
-                      {/* Luxe frame glow */}
-                      <div
-                        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                        style={{
-                          background:
-                            "radial-gradient(circle at 0 0, rgba(255,255,255,0.20), transparent 55%), radial-gradient(circle at 100% 100%, rgba(255,255,255,0.12), transparent 55%)",
-                        }}
-                      />
-
-                      {/* Carousel – wide framed */}
-                      <div className="relative p-4 pb-0 md:p-5 md:pb-0">
-                        <div className="rounded-2xl border border-white/15 overflow-hidden">
-                          <Carousel className="relative w-full">
-                            <CarouselContent>
-                              {category.slides.map((slide, i) => (
-                                <CarouselItem key={i}>
-                                  <div className="relative h-64 md:h-80 overflow-hidden">
-                                    <img
-                                      src={slide.src}
-                                      alt={slide.alt}
-                                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
-                                  </div>
-                                </CarouselItem>
-                              ))}
-                            </CarouselContent>
-                            <CarouselPrevious className="left-4 top-1/2 -translate-y-1/2 bg-black/45 text-white border-none hover:bg-black/70" />
-                            <CarouselNext className="right-4 top-1/2 -translate-y-1/2 bg-black/45 text-white border-none hover:bg-black/70" />
-                          </Carousel>
-                        </div>
+                  <div key={category.title} className="group">
+                    <Card className="relative overflow-hidden border-none bg-black/20 backdrop-blur-2xl text-white rounded-[2rem] shadow-[0_25px_80px_rgba(0,0,0,0.5)] transition-all duration-700 hover:shadow-[0_35px_120px_rgba(0,0,0,0.7)] hover:-translate-y-3">
+                      <div className="relative">
+                        <Carousel className="relative w-full">
+                          <CarouselContent>
+                            {category.slides.map((slide, i) => (
+                              <CarouselItem key={i}>
+                                <div className="relative h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden">
+                                  <img
+                                    src={slide.src || "/placeholder.svg"}
+                                    alt={slide.alt}
+                                    className="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
+                                  />
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                                  <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-transparent" />
+                                </div>
+                              </CarouselItem>
+                            ))}
+                          </CarouselContent>
+                          <CarouselPrevious className="left-6 top-1/2 -translate-y-1/2 h-12 w-12 bg-black/40 text-white border-white/20 hover:bg-black/60 backdrop-blur-xl" />
+                          <CarouselNext className="right-6 top-1/2 -translate-y-1/2 h-12 w-12 bg-black/40 text-white border-white/20 hover:bg-black/60 backdrop-blur-xl" />
+                        </Carousel>
                       </div>
 
-                      <CardContent className="relative px-6 md:px-8 pb-7 pt-5">
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
-                          <div className="flex items-center gap-3">
-                            <div
-                              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-black/30 shadow-inner"
-                              style={{
-                                boxShadow: "0 0 22px rgba(0,0,0,0.65)",
-                              }}
-                            >
-                              <Icon className="h-5 w-5 text-white" />
+                      <CardContent className="absolute bottom-0 left-0 right-0 p-8 md:p-10 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
+                        <div className="flex items-end justify-between gap-6">
+                          <div className="space-y-3">
+                            <div className="flex items-center gap-3">
+                              <div className="h-11 w-11 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center">
+                                <Icon className="h-5 w-5" />
+                              </div>
+                              <h3 className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold">
+                                {category.title}
+                              </h3>
                             </div>
-                            <h4 className="text-xl md:text-2xl font-serif font-semibold">
-                              {category.title}
-                            </h4>
+                            <p className="text-base md:text-lg text-white/70 max-w-2xl leading-relaxed">
+                              {category.description}
+                            </p>
                           </div>
-                        </div>
-
-                        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
-                          <p className="text-sm md:text-base text.white/75 leading-relaxed max-w-2xl">
-                            {category.description}
-                          </p>
-                          <Link href="/contact" className="shrink-0"></Link>
                         </div>
                       </CardContent>
                     </Card>
-                  </section>
+                  </div>
                 );
               })}
             </div>
 
-            {/* Kids block only for Residential */}
+            {/* Kids Section */}
             {isResidential && (
-              <div className="max-w-5xl mx-auto mt-20 space-y-8">
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="text-3xl md:text-4xl font-serif font-bold">
-                    Kids&apos; rooms that actually grow with them.
-                  </h3>
-                  <span className="hidden md:inline-flex text-xs uppercase tracking-[0.3em] text-white/50">
-                    Kids · Beds · Storage
-                  </span>
-                </div>
+              <div className="mt-24 pt-24 border-t border-white/10 bg-[#467891]/30 rounded-[2rem] p-8 md:p-12">
+                <h2 className="text-3xl md:text-5xl font-serif font-bold text-center mb-12 text-balance">
+                  Rooms that grow with them
+                </h2>
 
-                {/* stacked vertically */}
-                <div className="space-y-8">
+                <div className="flex flex-col gap-8">
                   {kidsCategories.map((category) => {
                     const Icon = category.icon;
                     return (
-                      <section
+                      <Card
                         key={category.title}
-                        className="rounded-[1.75rem] px-1.5 md:px-2 py-6 md:py-7"
-                        style={{
-                          backgroundColor: category.background ?? workBgColor,
-                        }}
+                        className="group relative overflow-hidden border-none bg-black/20 backdrop-blur-2xl text-white rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition-all duration-700 hover:shadow-[0_30px_90px_rgba(0,0,0,0.6)] hover:-translate-y-2"
                       >
-                        <Card className="group relative overflow-hidden border border-white/12 bg-white/5 backdrop-blur-xl text-white rounded-3xl shadow-[0_18px_60px_rgba(0,0,0,0.6)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_26px_85px_rgba(0,0,0,0.85)]">
-                          <div className="relative p-3 pb-0">
-                            <div className="rounded-2xl border border-white/18 overflow-hidden">
-                              <Carousel className="relative w-full">
-                                <CarouselContent>
-                                  {category.slides.map((slide, i) => (
-                                    <CarouselItem key={i}>
-                                      <div className="relative h-56 md:h-60 overflow-hidden">
-                                        <img
-                                          src={slide.src}
-                                          alt={slide.alt}
-                                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                                      </div>
-                                    </CarouselItem>
-                                  ))}
-                                </CarouselContent>
-                                <CarouselPrevious className="left-4 top-1/2 -translate-y-1/2 bg-black/45 text-white border-none hover:bg-black/70" />
-                                <CarouselNext className="right-4 top-1/2 -translate-y-1/2 bg-black/45 text-white border-none hover:bg-black/70" />
-                              </Carousel>
-                            </div>
-                          </div>
+                        <div className="relative">
+                          <Carousel className="relative w-full">
+                            <CarouselContent>
+                              {category.slides.map((slide, i) => (
+                                <CarouselItem key={i}>
+                                  <div className="relative h-[300px] md:h-[350px] overflow-hidden">
+                                    <img
+                                      src={slide.src || "/placeholder.svg"}
+                                      alt={slide.alt}
+                                      className="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                                  </div>
+                                </CarouselItem>
+                              ))}
+                            </CarouselContent>
+                            <CarouselPrevious className="left-4 h-10 w-10 bg-black/40 text-white border-white/20 hover:bg-black/60 backdrop-blur-xl" />
+                            <CarouselNext className="right-4 h-10 w-10 bg-black/40 text-white border-white/20 hover:bg-black/60 backdrop-blur-xl" />
+                          </Carousel>
+                        </div>
 
-                          <CardContent className="relative p-6 pt-5">
-                            <div className="flex items-center gap-3 mb-3">
-                              <div className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-black/30">
-                                <Icon className="h-4 w-4 text-white" />
-                              </div>
-                              <h4 className="text-xl font-serif font-semibold">
-                                {category.title}
-                              </h4>
+                        <CardContent className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                          <div className="flex items-center gap-3 mb-2">
+                            <div className="h-9 w-9 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center">
+                              <Icon className="h-4 w-4" />
                             </div>
-                            <p className="text-sm text-white/80 leading-relaxed mb-4">
-                              {category.description}
-                            </p>
-                            <span className="text-[11px] uppercase tracking-[0.22em] text-white/55">
-                              5 room angles · bunk + storage
-                            </span>
-                          </CardContent>
-                        </Card>
-                      </section>
+                            <h3 className="text-xl md:text-2xl font-serif font-bold">
+                              {category.title}
+                            </h3>
+                          </div>
+                          <p className="text-sm md:text-base text-white/70">
+                            {category.description}
+                          </p>
+                        </CardContent>
+                      </Card>
                     );
                   })}
                 </div>
@@ -618,24 +565,23 @@ export default function WorkPage() {
           </div>
         </section>
 
-        {/* CTA section */}
-        <section className="py-20 bg-gradient-to-br from-black via-[#052120] to-[#0D4341] border-t border-white/10">
-          <div className="container mx-auto px-6 text-center">
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-5">
+        <section className="relative py-32 bg-[#8ab3c7] overflow-hidden">
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-white/10 rounded-full blur-[150px]" />
+          </div>
+
+          <div className="container mx-auto px-6 text-center relative z-10">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 text-balance leading-tight">
               {isResidential
-                ? "Have a floor plan or just a moodboard?"
-                : "Have a bare shell or a half-furnished office?"}
-            </h3>
-            <p className="text-base md:text-lg text-white/75 max-w-2xl mx-auto mb-8">
-              Share your reference images, plan or even a rough WhatsApp sketch.
-              We&apos;ll tell you exactly what&apos;s possible with custom
-              furniture.
+                ? "Let's design your space"
+                : "Build a workspace that works"}
+            </h2>
+            <p className="text-lg md:text-xl text-white/60 max-w-xl mx-auto mb-10 font-light">
+              Share your vision. We'll make it real.
             </p>
             <Link href="/contact">
-              <Button className="bg-white text-[#0D4341] hover:bg-white/90 shadow-[0_18px_55px_rgba(0,0,0,0.7)] px-8 py-6 text-base md:text-lg h-auto rounded-full">
-                {isResidential
-                  ? "Talk about your home project"
-                  : "Discuss your commercial project"}
+              <Button className="bg-white text-[#0D4341] hover:bg-white/90 shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:shadow-[0_25px_80px_rgba(0,0,0,0.6)] px-10 py-7 text-lg h-auto rounded-full transition-all duration-500 hover:scale-105">
+                Start your project
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
@@ -643,23 +589,17 @@ export default function WorkPage() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-[#696a0d] text-white py-14 border-t border-white/10">
+      <footer className="bg-[#467891] text-white py-16 border-t border-white/10">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col items-center text-center space-y-5">
-            <h2 className="text-2xl md:text-3xl font-serif font-bold">
+          <div className="flex flex-col items-center text-center space-y-4">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight">
               VAMA Living
             </h2>
-            <p className="text-sm text-white/80">
-              Factory-to-home custom furniture · Hyderabad
-            </p>
-            <div className="space-y-1 text-white/80 text-sm">
-              <p>contact@vamaliving.com · +91 XXX XXX XXXX</p>
-              <p>Hyderabad, India</p>
+            <p className="text-white/60">Custom furniture · Hyderabad</p>
+            <div className="text-white/60 text-sm pt-2">
+              <p>contact@vamaliving.com</p>
             </div>
-            <p className="text-xs text-white/80 pt-2">
-              © 2025 VAMA Living. All rights reserved.
-            </p>
+            <p className="text-xs text-white/40 pt-4">© 2025 VAMA Living</p>
           </div>
         </div>
       </footer>

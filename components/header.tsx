@@ -10,7 +10,7 @@ export default function Header() {
       <div
         className="
           pointer-events-auto
-          mx-auto max-w-6xl
+          mx-auto max-w-4xl
           flex items-center justify-between gap-6
           rounded-full border border-black/5
           bg-white/85 backdrop-blur-md
@@ -22,12 +22,12 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-3">
           <div className="flex items-center">
             <Image
-              src="/images/logo1.png"
+              src="/images/logo12.png"
               alt="VAMA Living logo"
               width={220}
               height={60}
               className="
-                h-10 md:h-12
+                h-12 md:h-14
                 w-auto
                 object-contain
               "
