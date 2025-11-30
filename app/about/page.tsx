@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -5,19 +8,29 @@ import { ArrowRight, Award, Users, Sparkles, Heart } from "lucide-react";
 import Header from "@/components/header";
 
 export default function AboutPage() {
+  const [showIntroVideo, setShowIntroVideo] = useState(true);
+
+  const handleVideoEnd = () => {
+    setShowIntroVideo(false);
+  };
+
+  const handleSkip = () => {
+    setShowIntroVideo(false);
+  };
+
   return (
-    <div className="min-h-screen bg-[#3e0708] text-white">
+    <div className="min-h-screen bg-[#F4E0C8] text-[#3e0708]">
       {/* Header */}
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-24 bg-[#3b0405]">
+      <section className="pt-32 pb-24 bg-[#F4E0C8]">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-serif font-bold leading-tight mb-6 text-balance">
               Crafting Comfort, Defining Style
             </h2>
-            <p className="text-xl text-white/80 leading-relaxed">
+            <p className="text-xl text-[#3e0708]/75 leading-relaxed">
               At VAMA Living, we believe furniture is more than just utility.
               It&apos;s an expression of who you are, a reflection of your
               taste, and the foundation of memorable moments in your space.
@@ -26,15 +39,67 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Story Section */}
-      <section className="py-24 bg-[#330304]">
+      {/* FULLSCREEN VIDEO SECTION – sits between Hero and Our Story */}
+      {showIntroVideo && (
+        <section className="relative h-screen w-full bg-black">
+          {/* Video itself */}
+          <video
+            className="h-full w-full object-cover"
+            src="/videos/vamavid1.mp4" // replace with your actual video path
+            autoPlay
+            muted
+            playsInline
+            onEnded={handleVideoEnd}
+          />
+
+          {/* Soft overlay & controls */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-black/40" />
+
+          <div className="absolute inset-0 flex flex-col justify-between">
+            {/* Top label */}
+            <div className="pt-6 px-6 flex justify-between items-center">
+              <span className="inline-flex items-center gap-2 rounded-full bg-black/50 text-white/80 text-xs uppercase tracking-[0.35em] px-4 py-2 backdrop-blur-md">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F4E0C8]" />
+                VAMA · INTRO
+              </span>
+
+              <button
+                type="button"
+                onClick={handleSkip}
+                className="text-xs uppercase tracking-[0.25em] text-white/80 bg-black/50 hover:bg-black/70 px-4 py-2 rounded-full backdrop-blur-md transition-colors"
+              >
+                Skip
+              </button>
+            </div>
+
+            {/* Bottom copy (small, classy) */}
+            <div className="pb-10 px-6">
+              <div className="max-w-3xl mx-auto text-left md:text-center">
+                <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/60 mb-3">
+                  Inside the workshop
+                </p>
+                <h3 className="text-2xl md:text-3xl font-serif font-semibold text-white leading-tight mb-2">
+                  From board to home, every detail is deliberate.
+                </h3>
+                <p className="text-sm md:text-base text-white/70 max-w-xl md:mx-auto">
+                  A quiet glimpse into how your furniture comes to life before
+                  it ever enters your space.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Story Section – this will sit directly under Hero once video disappears */}
+      <section className="py-24 bg-[#F7E7D2]">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
             <div>
               <h3 className="text-4xl md:text-5xl font-serif font-bold mb-6">
                 Our Story
               </h3>
-              <div className="space-y-4 text-white/80 leading-relaxed">
+              <div className="space-y-4 text-[#3e0708]/80 leading-relaxed">
                 <p>
                   Founded in Hyderabad, VAMA Living emerged from a simple
                   vision: to deliver factory-fresh, fully customizable furniture
@@ -53,71 +118,71 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="relative h-96 rounded-lg overflow-hidden shadow-2xl border border-white/15">
+            <div className="relative h-96 rounded-lg overflow-hidden shadow-2xl border border-[#3e0708]/15">
               <img
                 src="/furniture-workshop-craftsmen-at-work.jpg"
                 alt="VAMA Living Workshop"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Values Section */}
-      <section className="py-24 bg-[#390404]">
+      <section className="py-24 bg-[#F4E0C8]">
         <div className="container mx-auto px-6">
           <h3 className="text-4xl md:text-5xl font-serif font-bold text-center mb-16">
             What We Stand For
           </h3>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            <Card className="border-2 border-white/15 bg-white/5 text-white hover:border-white/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_55px_rgba(0,0,0,0.7)]">
+            <Card className="border border-[#3e0708]/15 bg-white/70 text-[#3e0708] shadow-sm hover:border-[#3e0708]/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(0,0,0,0.15)]">
               <CardContent className="p-8 text-center">
-                <Award className="h-12 w-12 text-white mx-auto mb-4" />
+                <Award className="h-12 w-12 text-[#3e0708] mx-auto mb-4" />
                 <h4 className="text-xl font-serif font-bold mb-3">
                   Quality First
                 </h4>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-sm text-[#3e0708]/80 leading-relaxed">
                   Premium materials and expert craftsmanship in every piece we
                   create.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-white/15 bg-white/5 text-white hover:border-white/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_55px_rgba(0,0,0,0.7)]">
+            <Card className="border border-[#3e0708]/15 bg-white/70 text-[#3e0708] shadow-sm hover:border-[#3e0708]/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(0,0,0,0.15)]">
               <CardContent className="p-8 text-center">
-                <Sparkles className="h-12 w-12 text-white mx-auto mb-4" />
+                <Sparkles className="h-12 w-12 text-[#3e0708] mx-auto mb-4" />
                 <h4 className="text-xl font-serif font-bold mb-3">
                   Full Customization
                 </h4>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-sm text-[#3e0708]/80 leading-relaxed">
                   Design freedom to match your unique style and space
                   requirements.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-white/15 bg-white/5 text-white hover:border-white/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_55px_rgba(0,0,0,0.7)]">
+            <Card className="border border-[#3e0708]/15 bg-white/70 text-[#3e0708] shadow-sm hover:border-[#3e0708]/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(0,0,0,0.15)]">
               <CardContent className="p-8 text-center">
-                <Users className="h-12 w-12 text-white mx-auto mb-4" />
+                <Users className="h-12 w-12 text-[#3e0708] mx-auto mb-4" />
                 <h4 className="text-xl font-serif font-bold mb-3">
                   Client Focus
                 </h4>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-sm text-[#3e0708]/80 leading-relaxed">
                   Your satisfaction is our priority, from design to delivery.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-white/15 bg-white/5 text-white hover:border-white/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_55px_rgba(0,0,0,0.7)]">
+            <Card className="border border-[#3e0708]/15 bg-white/70 text-[#3e0708] shadow-sm hover:border-[#3e0708]/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(0,0,0,0.15)]">
               <CardContent className="p-8 text-center">
-                <Heart className="h-12 w-12 text-white mx-auto mb-4" />
+                <Heart className="h-12 w-12 text-[#3e0708] mx-auto mb-4" />
                 <h4 className="text-xl font-serif font-bold mb-3">
                   Built to Last
                 </h4>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-sm text-[#3e0708]/80 leading-relaxed">
                   Durable designs that stand the test of time and daily use.
                 </p>
               </CardContent>
@@ -127,17 +192,17 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-white via-[#3e0708] to-[#e65f61] text-white">
+      <section className="py-24 bg-gradient-to-br from-[#FDF7F0] via-[#F4E0C8] to-[#F48587] text-[#3e0708]">
         <div className="container mx-auto px-6 text-center">
           <h3 className="text-4xl md:text-5xl font-serif font-bold mb-6">
             Ready to Transform Your Space?
           </h3>
-          <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-[#3e0708]/80 mb-8 max-w-2xl mx-auto">
             Let&apos;s create furniture that perfectly fits your vision and
             lifestyle.
           </p>
           <Link href="/contact">
-            <Button className="bg-white text-[#0D4341] hover:bg-white/90 shadow-lg px-8 py-6 text-lg h-auto rounded-full">
+            <Button className="bg-[#0B7A78] text-white hover:bg-[#0a625f] shadow-lg px-8 py-6 text-lg h-auto rounded-full">
               Get in Touch
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
@@ -146,7 +211,7 @@ export default function AboutPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-#3e0708 text-white py-16 border-t border-white/10">
+      <footer className="bg-[#F4E0C8] text-[#3e0708] py-16 border-t border-[#3e0708]/10">
         <div className="container mx-auto px-6">
           <div className="flex flex-col items-center text-center space-y-6">
             <h2 className="text-3xl font-serif font-bold">VAMA Living</h2>
@@ -154,7 +219,7 @@ export default function AboutPage() {
             <div className="flex items-center gap-6">
               <a
                 href="#"
-                className="hover:text-[#F4E0C8] transition-colors"
+                className="hover:text-[#0B7A78] transition-colors"
                 aria-label="Facebook"
               >
                 <svg
@@ -167,7 +232,7 @@ export default function AboutPage() {
               </a>
               <a
                 href="#"
-                className="hover:text-[#F4E0C8] transition-colors"
+                className="hover:text-[#0B7A78] transition-colors"
                 aria-label="Instagram"
               >
                 <svg
@@ -180,7 +245,7 @@ export default function AboutPage() {
               </a>
               <a
                 href="#"
-                className="hover:text-[#F4E0C8] transition-colors"
+                className="hover:text-[#0B7A78] transition-colors"
                 aria-label="LinkedIn"
               >
                 <svg
@@ -193,13 +258,13 @@ export default function AboutPage() {
               </a>
             </div>
 
-            <div className="space-y-2 text-white/60">
+            <div className="space-y-2 text-[#3e0708]/70">
               <p>contact@vamaliving.com</p>
               <p>+91 XXX XXX XXXX</p>
               <p>Hyderabad, India</p>
             </div>
 
-            <p className="text-sm text-white/45 pt-6">
+            <p className="text-sm text-[#3e0708]/50 pt-6">
               © 2025 VAMA Living. All rights reserved.
             </p>
           </div>
