@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 
 import "./globals.css";
+import WhatsAppFloat from "@/components/whatsapp-float";
 
 const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
@@ -50,6 +51,8 @@ export default function RootLayout({
         className={`${inter.variable} ${playfairDisplay.variable} font-sans antialiased`}
       >
         {children}
+        {/* Floating WhatsApp button – visible on all pages */}
+        <WhatsAppFloat />
       </body>
     </html>
   );

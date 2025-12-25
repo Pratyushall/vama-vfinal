@@ -1,275 +1,207 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Award, Users, Sparkles, Heart } from "lucide-react";
+import { ArrowRight, Award, Sparkles, Heart } from "lucide-react";
 import Header from "@/components/header";
+import Footer from "@/components/footer";
 
 export default function AboutPage() {
-  const [showIntroVideo, setShowIntroVideo] = useState(true);
-
-  const handleVideoEnd = () => {
-    setShowIntroVideo(false);
-  };
-
-  const handleSkip = () => {
-    setShowIntroVideo(false);
-  };
-
   return (
-    <div className="min-h-screen bg-[#F4E0C8] text-[#3e0708]">
-      {/* Header */}
+    <div className="min-h-screen flex flex-col bg-white text-[#0B3B38]">
       <Header />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-24 bg-[#F4E0C8]">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-5xl md:text-6xl font-serif font-bold leading-tight mb-6 text-balance">
-              Crafting Comfort, Defining Style
-            </h2>
-            <p className="text-xl text-[#3e0708]/75 leading-relaxed">
-              At VAMA Living, we believe furniture is more than just utility.
-              It&apos;s an expression of who you are, a reflection of your
-              taste, and the foundation of memorable moments in your space.
+      <main className="flex-1">
+        {/* HERO — WHITE */}
+        <section className="pt-32 pb-24 bg-white">
+          <div className="container mx-auto px-6 max-w-5xl text-center space-y-6">
+            <p className="text-xs tracking-[0.28em] uppercase text-teal-700/70">
+              About VAMA Living
+            </p>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold leading-tight text-balance">
+              Crafting comfort,
+              <span className="block text-teal-800">
+                quietly, for your rooms.
+              </span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-teal-900/80 leading-relaxed max-w-3xl mx-auto">
+              At VAMA Living, furniture isn&apos;t a product line. It&apos;s a
+              long-term relationship with the spaces you live and work in.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* FULLSCREEN VIDEO SECTION – sits between Hero and Our Story */}
-      {showIntroVideo && (
-        <section className="relative h-screen w-full bg-black">
-          {/* Video itself */}
-          <video
-            className="h-full w-full object-cover"
-            src="/videos/vamavid1.mp4" // replace with your actual video path
-            autoPlay
-            muted
-            playsInline
-            onEnded={handleVideoEnd}
-          />
-
-          {/* Soft overlay & controls */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-black/40" />
-
-          <div className="absolute inset-0 flex flex-col justify-between">
-            {/* Top label */}
-            <div className="pt-6 px-6 flex justify-between items-center">
-              <span className="inline-flex items-center gap-2 rounded-full bg-black/50 text-white/80 text-xs uppercase tracking-[0.35em] px-4 py-2 backdrop-blur-md">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#F4E0C8]" />
-                VAMA · INTRO
-              </span>
-
-              <button
-                type="button"
-                onClick={handleSkip}
-                className="text-xs uppercase tracking-[0.25em] text-white/80 bg-black/50 hover:bg-black/70 px-4 py-2 rounded-full backdrop-blur-md transition-colors"
-              >
-                Skip
-              </button>
-            </div>
-
-            {/* Bottom copy (small, classy) */}
-            <div className="pb-10 px-6">
-              <div className="max-w-3xl mx-auto text-left md:text-center">
-                <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/60 mb-3">
-                  Inside the workshop
-                </p>
-                <h3 className="text-2xl md:text-3xl font-serif font-semibold text-white leading-tight mb-2">
-                  From board to home, every detail is deliberate.
-                </h3>
-                <p className="text-sm md:text-base text-white/70 max-w-xl md:mx-auto">
-                  A quiet glimpse into how your furniture comes to life before
-                  it ever enters your space.
-                </p>
-              </div>
-            </div>
-          </div>
         </section>
-      )}
 
-      {/* Story Section – this will sit directly under Hero once video disappears */}
-      <section className="py-24 bg-[#F7E7D2]">
-        <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+        {/* STORY — DEEP TEAL */}
+        <section className="py-24 bg-[#0B3B38] text-white">
+          <div className="container mx-auto px-6 max-w-6xl grid md:grid-cols-2 gap-16 items-center">
             <div>
-              <h3 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-                Our Story
-              </h3>
-              <div className="space-y-4 text-[#3e0708]/80 leading-relaxed">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-6">
+                Our story begins at the factory.
+              </h2>
+
+              <div className="space-y-4 text-white/80 leading-relaxed">
                 <p>
-                  Founded in Hyderabad, VAMA Living emerged from a simple
-                  vision: to deliver factory-fresh, fully customizable furniture
-                  directly to homes and businesses, eliminating middlemen and
-                  maximizing value.
+                  Founded in Hyderabad, VAMA Living started with a simple
+                  belief: great furniture doesn&apos;t need three middlemen.
                 </p>
                 <p>
-                  Over the years, we&apos;ve grown from a small workshop to a
-                  trusted name in custom furnishing, serving clients across
-                  residential and commercial spaces.
+                  We design, engineer and build in-house, so what reaches your
+                  space is factory-fresh, built to measure, and aligned with how
+                  you actually live.
                 </p>
                 <p>
-                  Every piece we create is designed with care, crafted with
-                  precision, and delivered with pride. That&apos;s the VAMA
-                  promise.
+                  From a small workshop to a trusted custom studio, our promise
+                  remains measured, deliberate, and built to last.
                 </p>
               </div>
             </div>
-            <div className="relative h-96 rounded-lg overflow-hidden shadow-2xl border border-[#3e0708]/15">
+
+            <div className="relative h-96 rounded-3xl overflow-hidden border border-white/15">
               <img
                 src="/furniture-workshop-craftsmen-at-work.jpg"
                 alt="VAMA Living Workshop"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Values Section */}
-      <section className="py-24 bg-[#F4E0C8]">
-        <div className="container mx-auto px-6">
-          <h3 className="text-4xl md:text-5xl font-serif font-bold text-center mb-16">
-            What We Stand For
-          </h3>
+        {/* VALUES — WHITE */}
+        <section className="py-24 bg-white">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="text-center mb-16 space-y-3">
+              <p className="text-xs tracking-[0.3em] uppercase text-teal-700/70">
+                What matters to us
+              </p>
+              <h2 className="text-3xl md:text-4xl font-serif font-semibold">
+                The principles behind every piece.
+              </h2>
+            </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            <Card className="border border-[#3e0708]/15 bg-white/70 text-[#3e0708] shadow-sm hover:border-[#3e0708]/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(0,0,0,0.15)]">
-              <CardContent className="p-8 text-center">
-                <Award className="h-12 w-12 text-[#3e0708] mx-auto mb-4" />
-                <h4 className="text-xl font-serif font-bold mb-3">
-                  Quality First
-                </h4>
-                <p className="text-sm text-[#3e0708]/80 leading-relaxed">
-                  Premium materials and expert craftsmanship in every piece we
-                  create.
-                </p>
-              </CardContent>
-            </Card>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="border border-teal-900/10 shadow-[0_14px_35px_rgba(0,0,0,0.06)]">
+                <CardContent className="p-8">
+                  <Award className="h-10 w-10 text-teal-800 mb-4" />
+                  <h3 className="text-xl font-serif font-semibold mb-3">
+                    Quiet quality
+                  </h3>
+                  <p className="text-sm text-teal-900/80">
+                    Materials and finishes chosen to feel better over time.
+                  </p>
+                </CardContent>
+              </Card>
 
-            <Card className="border border-[#3e0708]/15 bg-white/70 text-[#3e0708] shadow-sm hover:border-[#3e0708]/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(0,0,0,0.15)]">
-              <CardContent className="p-8 text-center">
-                <Sparkles className="h-12 w-12 text-[#3e0708] mx-auto mb-4" />
-                <h4 className="text-xl font-serif font-bold mb-3">
-                  Full Customization
-                </h4>
-                <p className="text-sm text-[#3e0708]/80 leading-relaxed">
-                  Design freedom to match your unique style and space
-                  requirements.
-                </p>
-              </CardContent>
-            </Card>
+              <Card className="border border-teal-900/10 shadow-[0_14px_35px_rgba(0,0,0,0.06)]">
+                <CardContent className="p-8">
+                  <Sparkles className="h-10 w-10 text-teal-800 mb-4" />
+                  <h3 className="text-xl font-serif font-semibold mb-3">
+                    Built to your life
+                  </h3>
+                  <p className="text-sm text-teal-900/80">
+                    Every dimension and detail tuned to your space.
+                  </p>
+                </CardContent>
+              </Card>
 
-            <Card className="border border-[#3e0708]/15 bg-white/70 text-[#3e0708] shadow-sm hover:border-[#3e0708]/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(0,0,0,0.15)]">
-              <CardContent className="p-8 text-center">
-                <Users className="h-12 w-12 text-[#3e0708] mx-auto mb-4" />
-                <h4 className="text-xl font-serif font-bold mb-3">
-                  Client Focus
-                </h4>
-                <p className="text-sm text-[#3e0708]/80 leading-relaxed">
-                  Your satisfaction is our priority, from design to delivery.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border border-[#3e0708]/15 bg-white/70 text-[#3e0708] shadow-sm hover:border-[#3e0708]/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(0,0,0,0.15)]">
-              <CardContent className="p-8 text-center">
-                <Heart className="h-12 w-12 text-[#3e0708] mx-auto mb-4" />
-                <h4 className="text-xl font-serif font-bold mb-3">
-                  Built to Last
-                </h4>
-                <p className="text-sm text-[#3e0708]/80 leading-relaxed">
-                  Durable designs that stand the test of time and daily use.
-                </p>
-              </CardContent>
-            </Card>
+              <Card className="border border-teal-900/10 shadow-[0_14px_35px_rgba(0,0,0,0.06)]">
+                <CardContent className="p-8">
+                  <Heart className="h-10 w-10 text-teal-800 mb-4" />
+                  <h3 className="text-xl font-serif font-semibold mb-3">
+                    Designed to last
+                  </h3>
+                  <p className="text-sm text-teal-900/80">
+                    Durable, serviceable, and thoughtfully engineered.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-[#FDF7F0] via-[#F4E0C8] to-[#F48587] text-[#3e0708]">
-        <div className="container mx-auto px-6 text-center">
-          <h3 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-            Ready to Transform Your Space?
-          </h3>
-          <p className="text-xl text-[#3e0708]/80 mb-8 max-w-2xl mx-auto">
-            Let&apos;s create furniture that perfectly fits your vision and
-            lifestyle.
-          </p>
-          <Link href="/contact">
-            <Button className="bg-[#0B7A78] text-white hover:bg-[#0a625f] shadow-lg px-8 py-6 text-lg h-auto rounded-full">
-              Get in Touch
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-[#F4E0C8] text-[#3e0708] py-16 border-t border-[#3e0708]/10">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col items-center text-center space-y-6">
-            <h2 className="text-3xl font-serif font-bold">VAMA Living</h2>
-
-            <div className="flex items-center gap-6">
-              <a
-                href="#"
-                className="hover:text-[#0B7A78] transition-colors"
-                aria-label="Facebook"
-              >
-                <svg
-                  className="h-6 w-6"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12S0 5.446 0 12.073c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                </svg>
-              </a>
-              <a
-                href="#"
-                className="hover:text-[#0B7A78] transition-colors"
-                aria-label="Instagram"
-              >
-                <svg
-                  className="h-6 w-6"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.663-.069 4.849-.149 3.225-1.664 4.771-6.98 6.98-1.266.057-1.645.069-4.849.069-3.204 0-3.663-.012-4.849-.069-4.358-.2-6.78-2.618-6.98-6.98C.014 15.668 0 15.259 0 12c0-3.259.014-3.668.072-4.948.2-4.358 2.622-6.78 6.98-6.98C8.257.014 8.666 0 11.925 0h.15zm0 5.838C8.597 8.001 5.838 10.76 5.838 14.163S8.597 20.326 12 20.326s6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-3.999 0-2.21 1.791-4 4-4s4 1.79 4 4c0 2.209-1.791 3.999-4 3.999zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                </svg>
-              </a>
-              <a
-                href="#"
-                className="hover:text-[#0B7A78] transition-colors"
-                aria-label="LinkedIn"
-              >
-                <svg
-                  className="h-6 w-6"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.564v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433C4.193 7.433 3.274 6.507 3.274 5.368 3.274 4.23 4.193 3.305 5.337 3.305c1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
-                </svg>
-              </a>
+        {/* CUSTOMIZATION PROCESS — DEEP TEAL */}
+        <section className="py-28 bg-[#0B3B38] text-white">
+          <div className="container mx-auto px-6 max-w-4xl">
+            <div className="text-center mb-16 space-y-3">
+              <p className="text-xs tracking-[0.3em] uppercase text-teal-200">
+                How we work
+              </p>
+              <h2 className="text-3xl md:text-4xl font-serif font-semibold">
+                Our customization process.
+              </h2>
             </div>
 
-            <div className="space-y-2 text-[#3e0708]/70">
-              <p>contact@vamaliving.com</p>
-              <p>+91 XXX XXX XXXX</p>
-              <p>Hyderabad, India</p>
+            <div className="space-y-14">
+              {[
+                {
+                  step: "01",
+                  title: "Consultation",
+                  desc: "We understand your spatial requirements, aesthetic preferences, and functional needs.",
+                },
+                {
+                  step: "02",
+                  title: "Design & Material Selection",
+                  desc: "Guidance on fabrics, woods, finishes, and operational mechanisms.",
+                },
+                {
+                  step: "03",
+                  title: "3D Visualization & Approval",
+                  desc: "Accurate previews to ensure fit and appearance before manufacturing.",
+                },
+                {
+                  step: "04",
+                  title: "Manufacturing",
+                  desc: "In-house production with stringent quality controls.",
+                },
+                {
+                  step: "05",
+                  title: "Installation & Delivery",
+                  desc: "Doorstep delivery with careful on-site assembly.",
+                },
+              ].map((item) => (
+                <div key={item.step} className="grid md:grid-cols-5 gap-6">
+                  <div className="md:col-span-1 text-teal-200 font-semibold">
+                    {item.step}
+                  </div>
+                  <div className="md:col-span-4">
+                    <h3 className="text-xl font-serif font-semibold mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-white/80 leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
+          </div>
+        </section>
 
-            <p className="text-sm text-[#3e0708]/50 pt-6">
-              © 2025 VAMA Living. All rights reserved.
+        {/* CTA — WHITE */}
+        <section className="py-24 bg-white">
+          <div className="container mx-auto px-6 text-center max-w-3xl space-y-6">
+            <p className="text-xs tracking-[0.3em] uppercase text-teal-700">
+              Start a project
             </p>
+            <h2 className="text-3xl md:text-4xl font-serif font-semibold">
+              Ready to plan your space with us?
+            </h2>
+            <p className="text-lg text-teal-900/80">
+              Share your floor plan, photos or just an idea. We&apos;ll help
+              translate it into furniture that feels like it belongs.
+            </p>
+
+            <Link href="/contact">
+              <Button className="bg-[#0B3B38] text-white hover:bg-teal-900 px-8 py-4 rounded-full text-base h-auto shadow-[0_14px_30px_rgba(0,0,0,0.25)]">
+                Book a consultation
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
           </div>
-        </div>
-      </footer>
+        </section>
+      </main>
+
+      <Footer />
     </div>
   );
 }

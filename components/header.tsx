@@ -1,10 +1,17 @@
-// components/header.tsx
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
+
+  const navItems = [
+    { href: "/work", label: "Our Work" },
+    { href: "/about", label: "Our Story" },
+  ];
+
   return (
     <header className="fixed top-4 left-4 right-4 z-50 pointer-events-none">
       <div
@@ -12,13 +19,13 @@ export default function Header() {
           pointer-events-auto
           mx-auto max-w-4xl
           flex items-center justify-between gap-6
-          rounded-full border border-black/5
-          bg-white/85 backdrop-blur-md
-          shadow-lg
+          rounded-full border border-teal-900/5
+          bg-white/90 backdrop-blur-md
+          shadow-[0_12px_30px_rgba(0,0,0,0.15)]
           px-5 md:px-8 py-2
         "
       >
-        {/* Logo / Brand – BIG logo filling the header height */}
+        {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
           <div className="flex items-center">
             <Image
@@ -35,30 +42,31 @@ export default function Header() {
           </div>
         </Link>
 
-        {/* Center nav links */}
+        {/* Center nav */}
         <nav className="hidden md:flex items-center gap-6 mx-auto justify-center">
-          <Link
-            href="/work"
-            className="
-              text-sm font-medium text-gray-800/80
-              transition-all duration-200
-              hover:text-[#5d3807]
-              hover:-translate-y-0.5
-            "
-          >
-            Our Products
-          </Link>
-          <Link
-            href="/about"
-            className="
-              text-sm font-medium text-gray-800/80
-              transition-all duration-200
-              hover:text-[#432702]
-              hover:-translate-y-0.5
-            "
-          >
-            Our Story
-          </Link>
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`
+                  relative text-sm font-medium
+                  transition-all duration-200
+                  ${
+                    isActive
+                      ? "text-teal-900"
+                      : "text-teal-900/70 hover:text-teal-900"
+                  }
+                `}
+              >
+                {item.label}
+                {isActive && (
+                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-[2px] w-6 rounded-full bg-teal-700" />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Right CTA */}
@@ -67,17 +75,16 @@ export default function Header() {
             className="
               hidden md:inline-flex items-center justify-center
               rounded-full px-5 py-2 text-sm font-semibold
-              bg-black text-white
-              shadow-[0_10px_25px_rgba(0,0,0,0.35)]
+              bg-[#0B7A78] text-white
+              shadow-[0_10px_25px_rgba(0,0,0,0.3)]
               transition-all duration-300
-              hover:bg-[#c08737]
-              hover:text-[#0b1901]
-              hover:shadow-[0_0_30px_rgba(216,182,138,0.75)]
+              hover:bg-[#064746]
+              hover:shadow-[0_16px_35px_rgba(0,0,0,0.35)]
               hover:-translate-y-0.5 hover:scale-[1.03]
               active:translate-y-0 active:scale-100
             "
           >
-            Reach Out
+            Start a Project
           </button>
         </Link>
       </div>
