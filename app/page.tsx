@@ -41,7 +41,7 @@ const testimonials = [
     role: "Homeowner, Jubilee Hills",
     quote:
       "VAMA transformed our entire living space. The attention to detail and craftsmanship exceeded all expectations. Every piece feels like it was made just for us.",
-    image: "/indian-woman-professional-headshot.png",
+    image: "/images/test1.png",
   },
   {
     id: 2,
@@ -49,7 +49,7 @@ const testimonials = [
     role: "CEO, TechSpace Solutions",
     quote:
       "Our new office furniture from VAMA has completely changed how our team works. The custom workstations are both functional and stunning.",
-    image: "/indian-man-business-executive-headshot.jpg",
+    image: "/images/test2.png",
   },
   {
     id: 3,
@@ -57,7 +57,7 @@ const testimonials = [
     role: "Parents of Two",
     quote:
       "The kids' room solution was genius. Two children, one room, and somehow VAMA made it feel spacious and organized. Pure magic!",
-    image: "/indian-couple-smiling-headshot.jpg",
+    image: "/images/test3.png",
   },
   {
     id: 4,
@@ -65,7 +65,7 @@ const testimonials = [
     role: "Interior Designer",
     quote:
       "As a designer, I'm very particular about quality. VAMA delivers consistently. I recommend them to all my clients without hesitation.",
-    image: "/indian-woman-designer-creative-headshot.jpg",
+    image: "/images/test4.png",
   },
 ];
 
@@ -138,157 +138,43 @@ export default function Page() {
 
       <main className="flex-1">
         {/* HERO */}
-        <section className="relative bg-white">
-          {/* Mobile hero */}
-          <div className="relative h-[80vh] min-h-[480px] overflow-hidden pt-24 md:hidden">
-            <div className="absolute inset-0">
-              <Image
-                src={currentHeroFrameMobile.src}
-                alt={currentHeroFrameMobile.alt}
-                fill
-                priority
-                className="object-cover transition-transform duration-700 ease-out"
-              />
-              <div className="absolute inset-0 bg-linear-to-b from-black/65 via-black/40 to-black/70" />
-            </div>
-
-            <div className="relative z-10 flex h-full flex-col justify-between pb-8 px-5">
-              <div className="pt-4">
-                <span className="inline-block text-[0.65rem] tracking-[0.3em] uppercase text-white/70">
-                  Step inside
-                </span>
-                <h1 className="mt-2 text-3xl font-serif text-white leading-tight">
-                  Furniture made for your rooms, not a catalog.
-                </h1>
-                <p className="mt-3 text-sm text-white/80 max-w-xs">
-                  Swipe through to see how we move from entrance to finished
-                  space, one piece at a time.
-                </p>
-              </div>
-
-              <div className="flex items-end justify-between">
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={handleHeroMobilePrev}
-                    className="group w-9 h-9 rounded-full bg-black/45 border border-white/35 flex items-center justify-center text-white backdrop-blur-sm active:scale-95 transition-all duration-200"
-                    aria-label="Previous hero image"
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.6}
-                        d="M15 19l-7-7 7-7"
-                      />
-                    </svg>
-                  </button>
-                  <button
-                    onClick={handleHeroMobileNext}
-                    className="group w-9 h-9 rounded-full bg-black/45 border border-white/35 flex items-center justify-center text-white backdrop-blur-sm active:scale-95 transition-all duration-200"
-                    aria-label="Next hero image"
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.6}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </button>
-
-                  <div className="flex gap-1 ml-2">
-                    {heroFrames.map((_, index) => (
-                      <span
-                        key={index}
-                        className={`h-1 rounded-full transition-all ${
-                          index === heroMobileIndex
-                            ? "w-4 bg-white"
-                            : "w-1.5 bg-white/40"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                <Link href="/work">
-                  <Button
-                    className="rounded-full px-5 py-2.5 text-sm font-sans h-auto
-                      bg-white/95 text-[#0B7A78] border border-white/70
-                      shadow-[0_10px_25px_rgba(0,0,0,0.4)]
-                      transition-all duration-300
-                      hover:bg-[#0B7A78] hover:text-white
-                      hover:shadow-[0_16px_35px_rgba(0,0,0,0.45)]
-                      active:translate-y-px active:shadow-[0_6px_16px_rgba(0,0,0,0.45)]"
-                  >
-                    Step inside VAMA
-                  </Button>
-                </Link>
-              </div>
-            </div>
+        <section className="relative h-screen w-full overflow-hidden bg-black">
+          {/* Mobile video */}
+          <div className="absolute inset-0 md:hidden">
+            <video
+              src="/videos/hero-mobile.mp4" // 🔁 mobile video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="h-full w-full object-cover"
+            />
           </div>
 
-          {/* Desktop hero */}
-          <div className="relative hidden md:block" ref={heroRef}>
-            <div className="relative h-[600vh]">
-              <div className="sticky top-0 h-screen overflow-hidden pt-24">
-                <div className="absolute inset-0">
-                  <Image
-                    src={currentHeroFrameDesktop.src}
-                    alt={currentHeroFrameDesktop.alt}
-                    fill
-                    priority
-                    className="object-cover transition-transform duration-700 ease-out scale-105"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/35 to-black/80" />
-                </div>
+          {/* Desktop video */}
+          <div className="absolute inset-0 hidden md:block">
+            <video
+              src="/videos/heroo.mp4" // 🔁 desktop video (1980x1080)
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="h-full w-full object-cover"
+            />
+          </div>
 
-                {/* Copy block */}
-                <div className="absolute inset-0 flex items-center">
-                  <div className="container mx-auto px-10 max-w-3xl">
-                    <p className="text-xs tracking-[0.3em] uppercase text-white/65 mb-4">
-                      Hyderabad · Custom Furniture
-                    </p>
-                    <h1 className="text-3xl lg:text-4xl font-serif text-white leading-tight mb-4">
-                      Furniture that belongs to{" "}
-                      <span className="text-white/80">your rooms.</span>
-                    </h1>
-                    <p className="text-lg text-white/75 max-w-xl">
-                      From sofas and beds to full offices, we design and build
-                      in-house so every piece fits your life, not just your
-                      floor plan.
-                    </p>
-                  </div>
-                </div>
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-black/55" />
 
-                <div className="relative z-10 flex h-full items-end justify-end pb-10 pr-10 lg:pb-14 lg:pr-14">
-                  <Link href="/work">
-                    <Button
-                      className="rounded-full px-10 py-4 text-base lg:text-lg font-sans h-auto
-                        bg-white/95 text-[#0B7A78] border border-white/80
-                        shadow-[0_18px_40px_rgba(0,0,0,0.45)]
-                        transition-all duration-300
-                        hover:bg-[#0B7A78] hover:text-white
-                        hover:shadow-[0_24px_60px_rgba(0,0,0,0.55)]
-                        hover:-translate-y-1 hover:scale-[1.03]
-                        active:translate-y-0 active:scale-100"
-                    >
-                      Step inside VAMA
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
+          {/* Text overlay */}
+          <div className="relative z-10 h-full flex items-center justify-center px-6 text-center">
+            <h1 className="font-serif text-white leading-tight tracking-tight text-[clamp(2rem,4.5vw,4rem)]">
+              Whatever you imagine; we make it.
+              <br />
+              <span className="block mt-2 text-white/80">
+                From factory to location.
+              </span>
+            </h1>
           </div>
         </section>
 
@@ -314,7 +200,7 @@ export default function Page() {
                 <div className="absolute -inset-4 bg-teal-900/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
                 <div className="relative aspect-4/5 overflow-hidden rounded-3xl shadow-[0_22px_60px_rgba(0,0,0,0.35)] border border-teal-950/20 bg-black/40">
                   <video
-                    src="/videos/comsec.mp4"
+                    src="/videos/com22.mp4"
                     className="w-full h-full object-cover"
                     autoPlay
                     muted

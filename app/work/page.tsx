@@ -9,7 +9,7 @@ import useEmblaCarousel from "embla-carousel-react";
 
 /* ---------------- CONFIG ---------------- */
 
-const HEADER_HEIGHT = 80; // px
+const HEADER_HEIGHT = 80;
 
 /* ---------------- TYPES ---------------- */
 
@@ -18,6 +18,8 @@ type Category = {
   title: string;
   slides: Slide[];
 };
+
+type Tab = "residential" | "corporate" | "kids";
 
 /* ---------------- DATA ---------------- */
 
@@ -49,50 +51,83 @@ const residentialCategories: Category[] = [
       { src: "/images/chair2.jpg", alt: "Chair 2" },
       { src: "/images/chair3.jpg", alt: "Chair 3" },
       { src: "/images/chair4.jpg", alt: "Chair 4" },
-      { src: "/images/chair5.jpg", alt: "Chair 5" },
+      { src: "/images/chair6.jpg", alt: "Chair 5" },
     ],
   },
   {
     title: "Dining",
     slides: [
-      { src: "/work/residential/dining-1.jpg", alt: "Dining 1" },
-      { src: "/work/residential/dining-2.jpg", alt: "Dining 2" },
-      { src: "/work/residential/dining-3.jpg", alt: "Dining 3" },
-      { src: "/work/residential/dining-4.jpg", alt: "Dining 4" },
-      { src: "/work/residential/dining-5.jpg", alt: "Dining 5" },
+      { src: "/images/dine1.jpg", alt: "Dining 1" },
+      { src: "/images/dine2.jpg", alt: "Dining 2" },
+      { src: "/images/dine3.jpg", alt: "Dining 3" },
+      { src: "/images/dine4.jpg", alt: "Dining 4" },
+      { src: "/images/dine5.jpg", alt: "Dining 5" },
     ],
   },
 ];
 
 const corporateCategories: Category[] = [
   {
-    title: "Workstations",
+    title: "Ergonomic Chairs",
     slides: [
-      { src: "/work/commercial/workstations-1.jpg", alt: "Work 1" },
-      { src: "/work/commercial/workstations-2.jpg", alt: "Work 2" },
-      { src: "/work/commercial/workstations-3.jpg", alt: "Work 3" },
-      { src: "/work/commercial/workstations-4.jpg", alt: "Work 4" },
-      { src: "/work/commercial/workstations-5.jpg", alt: "Work 5" },
+      { src: "/images/ergo1.jpg", alt: "Chair 1" },
+      { src: "/images/ergo2.jpg", alt: "Chair 2" },
+      { src: "/images/ergo3.jpg", alt: "Chair 3" },
+      { src: "/images/ergo4.jpg", alt: "Chair 4" },
+      { src: "/images/ergo5.jpg", alt: "Chair 5" },
     ],
   },
   {
-    title: "Chairs",
+    title: "Office Tables",
     slides: [
-      { src: "/work/commercial/chairs-1.jpg", alt: "Chair 1" },
-      { src: "/work/commercial/chairs-2.jpg", alt: "Chair 2" },
-      { src: "/work/commercial/chairs-3.jpg", alt: "Chair 3" },
-      { src: "/work/commercial/chairs-4.jpg", alt: "Chair 4" },
-      { src: "/work/commercial/chairs-5.jpg", alt: "Chair 5" },
+      { src: "/images/otables1.jpg", alt: "Table 1" },
+      { src: "/images/otables2.webp", alt: "Table 2" },
+      { src: "/images/otables3.png", alt: "Table 3" },
+      { src: "/images/otables4.png", alt: "Table 4" },
+      { src: "/images/otables5.webp", alt: "Table 5" },
     ],
   },
   {
-    title: "Reception",
+    title: "Workstation Furniture",
     slides: [
-      { src: "/work/commercial/reception-1.jpg", alt: "Reception 1" },
-      { src: "/work/commercial/reception-2.jpg", alt: "Reception 2" },
-      { src: "/work/commercial/reception-3.jpg", alt: "Reception 3" },
-      { src: "/work/commercial/reception-4.jpg", alt: "Reception 4" },
-      { src: "/work/commercial/reception-5.jpg", alt: "Reception 5" },
+      { src: "/images/workstation1.webp", alt: "Workstation 1" },
+      { src: "/images/workstation2.jpg", alt: "Workstation 2" },
+      { src: "/images/workstation3.png", alt: "Workstation 3" },
+      { src: "/images/workstation4.webp", alt: "Workstation 4" },
+      { src: "/images/workstation5.jpg", alt: "Workstation 5" },
+    ],
+  },
+];
+
+const kidsCategories: Category[] = [
+  {
+    title: "Bed",
+    slides: [
+      { src: "/images/kidbeds1.png", alt: "Kids Bed 1" },
+      { src: "/images/kidbeds2.webp", alt: "Kids Bed 2" },
+      { src: "/images/kidbeds3.webp", alt: "Kids Bed 3" },
+      { src: "/images/kidbeds4.webp", alt: "Kids Bed 4" },
+      { src: "/images/kidbeds5.jpg", alt: "Kids Bed 5" },
+    ],
+  },
+  {
+    title: "Bunk Beds",
+    slides: [
+      { src: "/images/bunkbeds1.png", alt: "Bunk Bed 1" },
+      { src: "/images/bunkbeds2.png", alt: "Bunk Bed 2" },
+      { src: "/images/bunkbeds3.png", alt: "Bunk Bed 3" },
+      { src: "/images/bunkbeds4.png", alt: "Bunk Bed 4" },
+      { src: "/images/bunkbeds5.webp", alt: "Bunk Bed 5" },
+    ],
+  },
+  {
+    title: "School",
+    slides: [
+      { src: "/images/kidschool1.png", alt: "School 1" },
+      { src: "/images/kidschool2.png", alt: "School 2" },
+      { src: "/images/kidschool3.png", alt: "School 3" },
+      { src: "/images/kidschool4.webp", alt: "School 4" },
+      { src: "/images/kidschool5.webp", alt: "School 5" },
     ],
   },
 ];
@@ -129,7 +164,6 @@ function FullscreenCarousel({ slides }: { slides: Slide[] }) {
         </div>
       </div>
 
-      {/* arrows */}
       <button
         onClick={prev}
         className="absolute left-8 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-white text-[#0B7A78] flex items-center justify-center"
@@ -144,7 +178,6 @@ function FullscreenCarousel({ slides }: { slides: Slide[] }) {
         <ArrowRight />
       </button>
 
-      {/* dots */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
         {slides.map((_, i) => (
           <div
@@ -162,67 +195,48 @@ function FullscreenCarousel({ slides }: { slides: Slide[] }) {
 /* ---------------- PAGE ---------------- */
 
 export default function WorkPage() {
-  const [tab, setTab] = useState<"residential" | "corporate">("residential");
+  const [tab, setTab] = useState<Tab>("residential");
+
   const categories =
-    tab === "residential" ? residentialCategories : corporateCategories;
+    tab === "residential"
+      ? residentialCategories
+      : tab === "corporate"
+      ? corporateCategories
+      : kidsCategories;
+
+  const bgColor =
+    tab === "residential"
+      ? "bg-[#0B7A78]"
+      : tab === "corporate"
+      ? "bg-[#083E3C]"
+      : "bg-[#5AABA8]";
 
   return (
-    <div className="min-h-screen bg-[#0B7A78] text-white">
+    <div className={`min-h-screen ${bgColor} text-white`}>
       <Header />
 
-      {/* CONTENT WRAPPER — pushes everything below header */}
       <main style={{ paddingTop: HEADER_HEIGHT }}>
-        {/* Tabs */}
-        {/* Tabs */}
         <div className="flex justify-center py-10">
-          <div className="flex gap-3 rounded-full bg-transparent">
-            {/* Residential */}
-            <button
-              onClick={() => setTab("residential")}
-              className={`
-        px-12 py-4 rounded-full font-bold transition-all duration-300
-        ${
-          tab === "residential"
-            ? `
-              bg-white text-[#0B7A78]
-              shadow-[0_8px_30px_rgba(255,255,255,0.25)]
-            `
-            : `
-              bg-transparent text-white
-              border border-white/60
-              hover:bg-white hover:text-[#0B7A78]
-            `
-        }
-      `}
-            >
-              Residential
-            </button>
-
-            {/* Corporate */}
-            <button
-              onClick={() => setTab("corporate")}
-              className={`
-        px-12 py-4 rounded-full font-bold transition-all duration-300
-        ${
-          tab === "corporate"
-            ? `
-              bg-white text-[#0B7A78]
-              shadow-[0_8px_30px_rgba(255,255,255,0.25)]
-            `
-            : `
-              bg-transparent text-white
-              border border-white/60
-              hover:bg-white hover:text-[#0B7A78]
-            `
-        }
-      `}
-            >
-              Corporate
-            </button>
+          <div className="flex gap-3">
+            {["Residential", "Corporate", "Kids"].map((label) => {
+              const key = label.toLowerCase() as Tab;
+              return (
+                <button
+                  key={label}
+                  onClick={() => setTab(key)}
+                  className={`px-10 py-4 rounded-full font-bold transition-all duration-300 ${
+                    tab === key
+                      ? "bg-white text-[#0B7A78] shadow-[0_8px_30px_rgba(255,255,255,0.25)]"
+                      : "border border-white/60 hover:bg-white hover:text-[#0B7A78]"
+                  }`}
+                >
+                  {label}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* Fullscreen Sections */}
         {categories.map((cat) => (
           <section
             key={cat.title}
@@ -230,10 +244,8 @@ export default function WorkPage() {
             className="relative w-screen overflow-hidden"
           >
             <FullscreenCarousel slides={cat.slides} />
-
-            {/* Single word title */}
             <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-              <h1 className="text-[10vw] font-bold uppercase tracking-tight text-white">
+              <h1 className="text-[3vw] font-bold uppercase tracking-tight text-white">
                 {cat.title}
               </h1>
             </div>
