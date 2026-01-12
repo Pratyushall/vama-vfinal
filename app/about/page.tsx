@@ -61,7 +61,7 @@ export default function AboutPage() {
 
             <div className="relative h-96 rounded-3xl overflow-hidden border border-white/15">
               <img
-                src="/furniture-workshop-craftsmen-at-work.jpg"
+                src="/images/story.jpg"
                 alt="VAMA Living Workshop"
                 className="w-full h-full object-cover"
               />
