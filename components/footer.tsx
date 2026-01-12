@@ -1,60 +1,65 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
 
 export default function Footer() {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
-
-  // ▶️ Play once when footer enters viewport
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasPlayedOnce) {
-          video.play().catch(() => {});
-          setHasPlayedOnce(true);
-        }
-      },
-      { threshold: 0.35 }
-    );
-
-    observer.observe(video);
-    return () => observer.disconnect();
-  }, [hasPlayedOnce]);
-
-  // ▶️ Replay on hover
-  const handleMouseEnter = () => {
-    videoRef.current?.play().catch(() => {});
-  };
-
-  // ⏸ Pause on hover out
-  const handleMouseLeave = () => {
-    videoRef.current?.pause();
-  };
-
   return (
-    <footer
-      className="relative overflow-hidden text-white border-t border-white/10"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      {/* 🎥 Background Video — FULL CLARITY */}
-      <video
-        ref={videoRef}
-        src="/videos/footer1.mp4" // 👈 your video
-        muted
-        playsInline
-        preload="auto"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+    <footer className="relative overflow-hidden text-white border-t border-white/10">
+      {/* ✅ Background Image (instead of video) */}
+      <div className="absolute inset-0">
+        <div
+          className="absolute inset-0 bg-center bg-cover"
+          style={{
+            backgroundImage: "url('/images/footerr.jpeg')", // 🔁 change this path
+          }}
+        />
+        {/* dark overlay for readability */}
+        <div className="absolute inset-0 bg-black/60" />
+      </div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 py-12 md:py-16">
         <div className="flex flex-col items-center text-center space-y-6 md:space-y-8">
+          {/* ✅ Footer top button */}
+          <Link href="/work" className="w-full flex justify-center">
+            <button
+              type="button"
+              className="
+                group relative
+                inline-flex items-center justify-center
+                rounded-full
+                px-6 py-3 md:px-8 md:py-4
+                bg-[#0D4341] text-white
+                font-semibold tracking-wide
+                border border-white/15
+                shadow-[0_16px_60px_rgba(0,0,0,0.35)]
+                transition-all duration-500
+                hover:shadow-[0_0_26px_rgba(255,255,255,0.22),0_16px_70px_rgba(0,0,0,0.45)]
+                hover:border-white/25
+                hover:-translate-y-0.5
+                active:translate-y-0
+                active:scale-[0.98]
+                focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40
+              "
+              aria-label="Our products"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                Our Products
+                <span className="transition-transform duration-500 group-hover:translate-x-0.5"></span>
+              </span>
+
+              {/* subtle white glow / sheen */}
+              <span
+                className="
+                  pointer-events-none absolute inset-0 rounded-full
+                  opacity-0 group-hover:opacity-100
+                  transition-opacity duration-700
+                  bg-[radial-gradient(900px_circle_at_20%_-30%,rgba(255,255,255,0.16),transparent_40%),radial-gradient(700px_circle_at_80%_130%,rgba(255,255,255,0.10),transparent_45%)]
+                "
+              />
+            </button>
+          </Link>
+
           <h2
             className="text-2xl md:text-3xl font-serif font-semibold tracking-tight"
             style={{

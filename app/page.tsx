@@ -2,36 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { useEffect, useRef, useState } from "react";
 
 const heroFrames = [
-  {
-    src: "/images/shut1.jpg",
-    alt: "Entrance shutter fully closed",
-  },
-  {
-    src: "/images/shut2.jpg",
-    alt: "Entrance shutter partially open",
-  },
-  {
-    src: "/images/shut3.jpg",
-    alt: "Entrance shutter fully open",
-  },
-  {
-    src: "/images/shut4.jpg",
-    alt: "View into the living space",
-  },
-  {
-    src: "/images/shut5.jpg",
-    alt: "Detail of custom furniture",
-  },
-  {
-    src: "/images/shut6.jpg",
-    alt: "Full room view with VAMA furniture",
-  },
+  { src: "/images/shut1.jpg", alt: "Entrance shutter fully closed" },
+  { src: "/images/shut2.jpg", alt: "Entrance shutter partially open" },
+  { src: "/images/shut3.jpg", alt: "Entrance shutter fully open" },
+  { src: "/images/shut4.jpg", alt: "View into the living space" },
+  { src: "/images/shut5.jpg", alt: "Detail of custom furniture" },
+  { src: "/images/shut6.jpg", alt: "Full room view with VAMA furniture" },
 ];
 
 const testimonials = [
@@ -41,7 +22,7 @@ const testimonials = [
     role: "Homeowner, Jubilee Hills",
     quote:
       "VAMA transformed our entire living space. The attention to detail and craftsmanship exceeded all expectations. Every piece feels like it was made just for us.",
-    image: "/images/test1.png",
+    image: "/images/tes11.jpeg",
   },
   {
     id: 2,
@@ -49,7 +30,7 @@ const testimonials = [
     role: "CEO, TechSpace Solutions",
     quote:
       "Our new office furniture from VAMA has completely changed how our team works. The custom workstations are both functional and stunning.",
-    image: "/images/test2.png",
+    image: "/images/tes22.jpeg",
   },
   {
     id: 3,
@@ -142,7 +123,7 @@ export default function Page() {
           {/* Mobile video */}
           <div className="absolute inset-0 md:hidden">
             <video
-              src="/videos/hero-mobile.mp4" // 🔁 mobile video
+              src="/videos/hero-mobile.mp4"
               autoPlay
               muted
               loop
@@ -154,7 +135,7 @@ export default function Page() {
           {/* Desktop video */}
           <div className="absolute inset-0 hidden md:block">
             <video
-              src="/videos/heroo.mp4" // 🔁 desktop video (1980x1080)
+              src="/videos/heroo.mp4"
               autoPlay
               muted
               loop
@@ -175,6 +156,48 @@ export default function Page() {
                 From factory to location.
               </span>
             </h1>
+          </div>
+
+          {/* ✅ NEW: Hero "Step Inside VAMA" cinematic button (bottom-right) */}
+          <div className="absolute bottom-6 right-6 md:bottom-10 md:right-10 z-20">
+            <Link href="/work" aria-label="Step inside VAMA">
+              <button
+                type="button"
+                className="
+                  group relative
+                  inline-flex items-center justify-center
+                  rounded-full
+                  px-6 py-3 md:px-8 md:py-4
+                  bg-[#0D4341] text-white
+                  font-medium tracking-wide
+                  shadow-[0_18px_60px_rgba(0,0,0,0.35)]
+                  border border-white/10
+                  backdrop-blur-sm
+                  transition-all duration-500
+                  hover:shadow-[0_0_28px_rgba(255,255,255,0.28),0_18px_70px_rgba(0,0,0,0.45)]
+                  hover:border-white/20
+                  hover:-translate-y-0.5
+                  active:translate-y-0
+                  active:scale-[0.98]
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black/30
+                "
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  Step Inside VAMA
+                  <span className="transition-transform duration-500 group-hover:translate-x-0.5"></span>
+                </span>
+
+                {/* subtle cinematic sheen */}
+                <span
+                  className="
+                    pointer-events-none absolute inset-0 rounded-full
+                    opacity-0 group-hover:opacity-100
+                    transition-opacity duration-700
+                    bg-[radial-gradient(1200px_circle_at_20%_-20%,rgba(255,255,255,0.18),transparent_40%),radial-gradient(900px_circle_at_80%_120%,rgba(255,255,255,0.10),transparent_45%)]
+                  "
+                />
+              </button>
+            </Link>
           </div>
         </section>
 
@@ -200,7 +223,7 @@ export default function Page() {
                 <div className="absolute -inset-4 bg-teal-900/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
                 <div className="relative aspect-4/5 overflow-hidden rounded-3xl shadow-[0_22px_60px_rgba(0,0,0,0.35)] border border-teal-950/20 bg-black/40">
                   <video
-                    src="/videos/com22.mp4"
+                    src="/videos/com21.mp4"
                     className="w-full h-full object-cover"
                     autoPlay
                     muted
@@ -330,6 +353,7 @@ export default function Page() {
 
         {/* Testimonials – DEEP TEAL */}
         <section className="relative min-h-screen overflow-hidden bg-[#062E2D] text-white">
+          {/* (kept everything else as-is below) */}
           <div className="absolute inset-0">
             <div className="absolute top-[10%] left-[5%] w-72 h-72 md:w-96 md:h-96 rounded-full bg-teal-500/18 blur-[100px]" />
             <div className="absolute bottom-[10%] right-[5%] w-[320px] h-80 md:w-[480px] md:h-[480px] rounded-full bg-teal-900/35 blur-[120px]" />

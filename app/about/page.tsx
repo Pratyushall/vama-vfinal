@@ -181,7 +181,7 @@ export default function AboutPage() {
         <section className="py-24 bg-white">
           <div className="container mx-auto px-6 text-center max-w-3xl space-y-6">
             <p className="text-xs tracking-[0.3em] uppercase text-teal-700">
-              Start a project
+              Buy from Vama
             </p>
             <h2 className="text-3xl md:text-4xl font-serif font-semibold">
               Ready to plan your space with us?
