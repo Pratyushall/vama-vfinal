@@ -212,16 +212,29 @@ function FullscreenCarousel({ slides }: { slides: Slide[] }) {
                 className="h-full w-full object-cover"
                 draggable={false}
               />
+
+              {/* ✅ Mobile title overlay (always visible on mobile) */}
+              <div className="absolute inset-0 md:hidden pointer-events-none">
+                {/* transparent-ish overlay so text doesn't merge */}
+                <div className="absolute inset-0 bg-black/25" />
+                <div className="absolute inset-x-0 bottom-0 p-6">
+                  <div className="inline-flex max-w-[90%] rounded-2xl bg-black/20 backdrop-blur-sm px-5 py-3 border border-white/15">
+                    <span className="text-lg font-semibold tracking-wide text-white drop-shadow-[0_8px_22px_rgba(0,0,0,0.65)]">
+                      {slides[i]?.alt ?? "VAMA Living"}
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* ✅ FIX: arrows now reliably clickable (higher z-index + stopPropagation) */}
+      {/* ✅ Arrows */}
       <button
         type="button"
         onClick={prev}
-        className="absolute left-8 top-1/2 -translate-y-1/2 z-30 h-12 w-12 rounded-full bg-white text-[#0B7A78] flex items-center justify-center"
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 h-11 w-11 md:h-12 md:w-12 rounded-full bg-white text-[#0B7A78] flex items-center justify-center"
         aria-label="Previous slide"
       >
         <ArrowRight className="rotate-180" />
@@ -230,13 +243,13 @@ function FullscreenCarousel({ slides }: { slides: Slide[] }) {
       <button
         type="button"
         onClick={next}
-        className="absolute right-8 top-1/2 -translate-y-1/2 z-30 h-12 w-12 rounded-full bg-white text-[#0B7A78] flex items-center justify-center"
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 h-11 w-11 md:h-12 md:w-12 rounded-full bg-white text-[#0B7A78] flex items-center justify-center"
         aria-label="Next slide"
       >
         <ArrowRight />
       </button>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-30">
+      <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-30">
         {slides.map((_, i) => (
           <div
             key={i}
@@ -271,7 +284,7 @@ export default function WorkPage() {
       ? "bg-[#083E3C]"
       : tab === "kids"
       ? "bg-[#5AABA8]"
-      : "bg-[#0D4341]"; // ✅ Exclusives background (deep teal)
+      : "bg-[#0D4341]";
 
   return (
     <div className={`min-h-screen ${bgColor} text-white`}>
@@ -313,11 +326,21 @@ export default function WorkPage() {
           >
             <FullscreenCarousel slides={cat.slides} />
 
-            {/* Hover Overlay */}
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500 flex items-center justify-center pointer-events-none">
+            {/* ✅ Desktop hover overlay (kept) */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500 flex items-center justify-center pointer-events-none hidden md:flex">
               <h1 className="text-[3vw] font-bold uppercase tracking-widest text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 {cat.title}
               </h1>
+            </div>
+
+            {/* ✅ Mobile category title (always visible, subtle overlay) */}
+            <div className="md:hidden absolute inset-0 pointer-events-none">
+              <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/35 to-transparent" />
+              <div className="absolute top-5 left-5">
+                <span className="inline-flex rounded-full bg-black/20 backdrop-blur-sm px-4 py-2 border border-white/15 text-sm font-semibold tracking-wide">
+                  {cat.title}
+                </span>
+              </div>
             </div>
           </section>
         ))}

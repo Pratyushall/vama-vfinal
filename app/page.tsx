@@ -4,16 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { useEffect, useRef, useState } from "react";
-
-const heroFrames = [
-  { src: "/images/shut1.jpg", alt: "Entrance shutter fully closed" },
-  { src: "/images/shut2.jpg", alt: "Entrance shutter partially open" },
-  { src: "/images/shut3.jpg", alt: "Entrance shutter fully open" },
-  { src: "/images/shut4.jpg", alt: "View into the living space" },
-  { src: "/images/shut5.jpg", alt: "Detail of custom furniture" },
-  { src: "/images/shut6.jpg", alt: "Full room view with VAMA furniture" },
-];
+import { useState } from "react";
 
 const testimonials = [
   {
@@ -50,68 +41,8 @@ const testimonials = [
   },
 ];
 
-function clamp(value: number, min: number, max: number) {
-  return Math.min(Math.max(value, min), max);
-}
-
 export default function Page() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
-
-  const heroRef = useRef<HTMLDivElement | null>(null);
-  const [heroStep, setHeroStep] = useState(0);
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  const [heroMobileIndex, setHeroMobileIndex] = useState(0);
-
-  useEffect(() => {
-    function updateIsDesktop() {
-      if (typeof window === "undefined") return;
-      setIsDesktop(window.innerWidth >= 768);
-    }
-    updateIsDesktop();
-    window.addEventListener("resize", updateIsDesktop);
-    return () => window.removeEventListener("resize", updateIsDesktop);
-  }, []);
-
-  useEffect(() => {
-    if (!isDesktop) return;
-
-    function handleScroll() {
-      const el = heroRef.current;
-      if (!el) return;
-
-      const rect = el.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const totalScroll = viewportHeight * (heroFrames.length - 1);
-      const distance = clamp(-rect.top, 0, totalScroll);
-      const progress = totalScroll === 0 ? 0 : distance / totalScroll;
-      const step = Math.round(progress * (heroFrames.length - 1));
-      setHeroStep(step);
-    }
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
-  }, [isDesktop]);
-
-  const currentHeroFrameDesktop = heroFrames[heroStep] ?? heroFrames[0];
-  const currentHeroFrameMobile = heroFrames[heroMobileIndex] ?? heroFrames[0];
-
-  const handleHeroMobilePrev = () => {
-    setHeroMobileIndex((prev) =>
-      prev === 0 ? heroFrames.length - 1 : prev - 1
-    );
-  };
-
-  const handleHeroMobileNext = () => {
-    setHeroMobileIndex((prev) =>
-      prev === heroFrames.length - 1 ? 0 : prev + 1
-    );
-  };
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-[#0B3B38]">
@@ -120,36 +51,36 @@ export default function Page() {
       <main className="flex-1">
         {/* HERO */}
         <section className="relative h-screen w-full overflow-hidden bg-black">
-          {/* Mobile video */}
+          {/* ✅ MOBILE HERO VIDEO */}
           <div className="absolute inset-0 md:hidden">
-            {/* ✅ Background image */}
-            <div
-              className="absolute inset-0 bg-center bg-cover"
-              style={{ backgroundImage: "url('/images/mobv.png')" }} // change path if needed
-            />
-
-            {/* ✅ Dark overlay for readability */}
-            <div className="absolute inset-0 bg-black/55" />
-          </div>
-
-          {/* Desktop video */}
-          <div className="absolute inset-0 hidden md:block">
             <video
-              src="/videos/heroo.mp4"
+              src="/videos/sale.mp4"
               autoPlay
               muted
               loop
               playsInline
               className="h-full w-full object-cover"
             />
+            {/* ✅ Transparent dark overlay so text stays readable */}
+            <div className="absolute inset-0 bg-black/40" />
           </div>
 
-          {/* Dark overlay */}
-          <div className="absolute inset-0 bg-black/55" />
+          {/* ✅ DESKTOP HERO VIDEO */}
+          <div className="absolute inset-0 hidden md:block">
+            <video
+              src="/videos/heroo.mp4" // 🔁 your DESKTOP hero video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/40" />
+          </div>
 
           {/* Text overlay */}
           <div className="relative z-10 h-full flex items-center justify-center px-6 text-center">
-            <h1 className="font-serif text-white leading-tight tracking-tight text-[clamp(2rem,4.5vw,4rem)]">
+            <h1 className="font-serif text-white leading-tight tracking-tight text-[clamp(2rem,4.5vw,4rem)] drop-shadow-[0_14px_44px_rgba(0,0,0,0.7)]">
               Custom Furniture
               <br />
               <span className="block mt-2 text-white/80">
@@ -158,7 +89,7 @@ export default function Page() {
             </h1>
           </div>
 
-          {/* ✅ NEW: Hero "Step Inside VAMA" cinematic button (bottom-right) */}
+          {/* ✅ Step Inside VAMA button -> /work (work/page.tsx) */}
           <div className="absolute bottom-6 right-6 md:bottom-10 md:right-10 z-20">
             <Link href="/work" aria-label="Step inside VAMA">
               <button
@@ -183,11 +114,13 @@ export default function Page() {
                 "
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  Step Inside VAMA
-                  <span className="transition-transform duration-500 group-hover:translate-x-0.5"></span>
+                  Step Inside VAMA{" "}
+                  <span className="transition-transform duration-500 group-hover:translate-x-0.5">
+                    →
+                  </span>
                 </span>
 
-                {/* subtle cinematic sheen */}
+                {/* subtle sheen */}
                 <span
                   className="
                     pointer-events-none absolute inset-0 rounded-full
@@ -221,7 +154,7 @@ export default function Page() {
 
               <div className="relative group max-w-md mx-auto lg:max-w-none">
                 <div className="absolute -inset-4 bg-teal-900/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
-                <div className="relative aspect-4/5 overflow-hidden rounded-3xl shadow-[0_22px_60px_rgba(0,0,0,0.35)] border border-teal-950/20 bg-black/40">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-[0_22px_60px_rgba(0,0,0,0.35)] border border-teal-950/20 bg-black/40">
                   <video
                     src="/videos/com21.mp4"
                     className="w-full h-full object-cover"
@@ -231,16 +164,7 @@ export default function Page() {
                     playsInline
                     controls={false}
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/65 via-transparent to-transparent" />
-                  <div className="pointer-events-none absolute bottom-4 right-4 flex items-center gap-2 text-[0.65rem] text-white/80">
-                    <span className="relative flex h-2.5 w-2.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400/70 opacity-60" />
-                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-teal-300" />
-                    </span>
-                    <span className="uppercase tracking-[0.18em]">
-                      Workspace in motion
-                    </span>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
                 </div>
               </div>
             </div>
@@ -259,7 +183,7 @@ export default function Page() {
               {/* Video */}
               <div className="relative order-2 lg:order-1 group max-w-md mx-auto lg:max-w-none">
                 <div className="absolute -inset-4 bg-teal-200/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
-                <div className="relative aspect-4/5 overflow-hidden rounded-3xl shadow-[0_22px_60px_rgba(0,0,0,0.5)] border border-white/20 bg-black/40">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-[0_22px_60px_rgba(0,0,0,0.5)] border border-white/20 bg-black/40">
                   <video
                     src="/videos/ressec.mp4"
                     className="w-full h-full object-cover"
@@ -269,16 +193,7 @@ export default function Page() {
                     playsInline
                     controls={false}
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/65 via-transparent to-transparent" />
-                  <div className="pointer-events-none absolute bottom-4 right-4 flex items-center gap-2 text-[0.65rem] text-white/85">
-                    <span className="relative flex h-2.5 w-2.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-300/80 opacity-70" />
-                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-teal-200" />
-                    </span>
-                    <span className="uppercase tracking-[0.18em]">
-                      Living story
-                    </span>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
                 </div>
               </div>
 
@@ -325,7 +240,7 @@ export default function Page() {
 
               <div className="relative group max-w-md mx-auto lg:max-w-none">
                 <div className="absolute -inset-4 bg-teal-400/15 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
-                <div className="relative aspect-4/5 overflow-hidden rounded-3xl shadow-[0_22px_60px_rgba(0,0,0,0.4)] border border-teal-950/20 bg-black/35">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-[0_22px_60px_rgba(0,0,0,0.4)] border border-teal-950/20 bg-black/35">
                   <video
                     src="/videos/kidssec.mp4"
                     className="w-full h-full object-cover"
@@ -335,16 +250,7 @@ export default function Page() {
                     playsInline
                     controls={false}
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/65 via-transparent to-transparent" />
-                  <div className="pointer-events-none absolute bottom-4 right-4 flex items-center gap-2 text-[0.65rem] text-white/85">
-                    <span className="relative flex h-2.5 w-2.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-300/80 opacity-70" />
-                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-teal-200" />
-                    </span>
-                    <span className="uppercase tracking-[0.18em]">
-                      Play in place
-                    </span>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
                 </div>
               </div>
             </div>
@@ -353,7 +259,6 @@ export default function Page() {
 
         {/* Testimonials – DEEP TEAL */}
         <section className="relative min-h-screen overflow-hidden bg-[#062E2D] text-white">
-          {/* (kept everything else as-is below) */}
           <div className="absolute inset-0">
             <div className="absolute top-[10%] left-[5%] w-72 h-72 md:w-96 md:h-96 rounded-full bg-teal-500/18 blur-[100px]" />
             <div className="absolute bottom-[10%] right-[5%] w-[320px] h-80 md:w-[480px] md:h-[480px] rounded-full bg-teal-900/35 blur-[120px]" />
@@ -373,15 +278,16 @@ export default function Page() {
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center max-w-7xl mx-auto">
               {/* Avatars */}
               <div className="lg:col-span-2 flex lg:flex-col gap-4 md:gap-5 justify-center lg:justify-start">
-                {testimonials.map((testimonial, index) => (
+                {testimonials.map((t, index) => (
                   <button
-                    key={testimonial.id}
+                    key={t.id}
                     onClick={() => setActiveTestimonial(index)}
                     className={`group relative transition-all duration-500 ease-out ${
                       activeTestimonial === index
                         ? "scale-100 z-10"
                         : "scale-90 opacity-55 hover:opacity-90 hover:scale-95"
                     }`}
+                    aria-label={`Select testimonial by ${t.name}`}
                   >
                     <div
                       className={`relative w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full overflow-hidden transition-all duration-500 ${
@@ -391,8 +297,8 @@ export default function Page() {
                       }`}
                     >
                       <img
-                        src={testimonial.image || "/placeholder.svg"}
-                        alt={testimonial.name}
+                        src={t.image || "/placeholder.svg"}
+                        alt={t.name}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                       <div
@@ -403,8 +309,9 @@ export default function Page() {
                         }`}
                       />
                     </div>
+
                     {activeTestimonial === index && (
-                      <div className="hidden lg:block absolute left-full top-1/2 -translate-y-1/2 w-8 h-px bg-linear-to-r from-teal-300 to-transparent ml-2" />
+                      <div className="hidden lg:block absolute left-full top-1/2 -translate-y-1/2 w-8 h-px bg-gradient-to-r from-teal-300 to-transparent ml-2" />
                     )}
                   </button>
                 ))}
@@ -421,23 +328,20 @@ export default function Page() {
                     <path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H6c0-2.2 1.8-4 4-4V8zm14 0c-3.3 0-6 2.7-6 6v10h10V14h-8c0-2.2 1.8-4 4-4V8z" />
                   </svg>
 
-                  <div className="group relative bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-8 lg:p-12 border border-white/15 shadow-[0_18px_60px_rgba(0,0,0,0.35)] transition-all duration-700 hover:bg.white/8 hover:border-teal-100/50">
-                    <p className="relative text-lg md:text-xl lg:text-[1.6rem] font-serif text.white leading-relaxed mb-8 md:mb-10 text-balance">
-                      "{testimonials[activeTestimonial].quote}"
+                  <div className="group relative bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-8 lg:p-12 border border-white/15 shadow-[0_18px_60px_rgba(0,0,0,0.35)] transition-all duration-700 hover:bg-white/8 hover:border-teal-100/50">
+                    <p className="relative text-lg md:text-xl lg:text-[1.6rem] font-serif text-white leading-relaxed mb-8 md:mb-10 text-balance">
+                      “{testimonials[activeTestimonial].quote}”
                     </p>
 
                     <div className="relative flex items-center gap-4 md:gap-5">
                       <div className="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden ring-2 ring-teal-300/50 transition-all duration-500 group-hover:ring-teal-200">
                         <img
-                          src={
-                            testimonials[activeTestimonial].image ||
-                            "/placeholder.svg"
-                          }
+                          src={testimonials[activeTestimonial].image}
                           alt={testimonials[activeTestimonial].name}
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div className="h-10 w-px bg-linear-to-b from-transparent via-teal-200/60 to-transparent hidden md:block" />
+                      <div className="h-10 w-px bg-gradient-to-b from-transparent via-teal-200/60 to-transparent hidden md:block" />
                       <div>
                         <h4 className="text-base md:text-lg font-medium text-white tracking-wide">
                           {testimonials[activeTestimonial].name}
@@ -463,16 +367,17 @@ export default function Page() {
               <div className="lg:col-span-3 flex flex-col items-center lg:items-end gap-8 md:gap-10">
                 <div className="flex gap-3">
                   <button
+                    type="button"
                     onClick={() =>
                       setActiveTestimonial((prev) =>
                         prev === 0 ? testimonials.length - 1 : prev - 1
                       )
                     }
-                    className="group w-10 h-10 md:w-11 md:h-11 rounded-full bg.white/8 border border.white/25 flex items-center justify-center transition-all duration-300 hover:bg.white hover:border.white hover:scale-110 hover:shadow-[0_0_28px_rgba(255,255,255,0.35)] active:scale-95 backdrop-blur-sm"
+                    className="group w-10 h-10 md:w-11 md:h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center transition-all duration-300 hover:bg-white hover:border-white hover:scale-110 hover:shadow-[0_0_28px_rgba(255,255,255,0.35)] active:scale-95 backdrop-blur-sm"
                     aria-label="Previous testimonial"
                   >
                     <svg
-                      className="w-4 h-4 md:w-5 md:h-5 text.white group-hover:text-[#062E2D] transition-colors duration-300"
+                      className="w-4 h-4 md:w-5 md:h-5 text-white group-hover:text-[#062E2D] transition-colors duration-300"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -485,17 +390,19 @@ export default function Page() {
                       />
                     </svg>
                   </button>
+
                   <button
+                    type="button"
                     onClick={() =>
                       setActiveTestimonial((prev) =>
                         prev === testimonials.length - 1 ? 0 : prev + 1
                       )
                     }
-                    className="group w-10 h-10 md:w-11 md:h-11 rounded-full bg.white/8 border border.white/25 flex items-center justify-center transition-all duration-300 hover:bg.white hover:border.white hover:scale-110 hover:shadow-[0_0_28px_rgba(255,255,255,0.35)] active:scale-95 backdrop-blur-sm"
+                    className="group w-10 h-10 md:w-11 md:h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center transition-all duration-300 hover:bg-white hover:border-white hover:scale-110 hover:shadow-[0_0_28px_rgba(255,255,255,0.35)] active:scale-95 backdrop-blur-sm"
                     aria-label="Next testimonial"
                   >
                     <svg
-                      className="w-4 h-4 md:w-5 md:h-5 text.white group-hover:text-[#062E2D] transition-colors duration-300"
+                      className="w-4 h-4 md:w-5 md:h-5 text-white group-hover:text-[#062E2D] transition-colors duration-300"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -515,7 +422,7 @@ export default function Page() {
                     <button
                       key={index}
                       onClick={() => setActiveTestimonial(index)}
-                      className={`rounded-full transition-all duration-400 ${
+                      className={`rounded-full transition-all duration-300 ${
                         activeTestimonial === index
                           ? "w-7 md:w-8 h-2 bg-teal-200 shadow-[0_0_14px_rgba(45,212,191,0.7)]"
                           : "w-2 h-2 bg-white/40 hover:bg-white/70"
