@@ -78,8 +78,11 @@ export default function Page() {
             <div className="absolute inset-0 bg-black/40" />
           </div>
 
-          {/* Text overlay */}
-          <div className="relative z-10 h-full flex items-center justify-center px-6 text-center">
+          {/* ✅ Text overlay
+              - MOBILE: hidden
+              - DESKTOP: visible
+          */}
+          <div className="relative z-10 h-full hidden md:flex items-center justify-center px-6 text-center">
             <h1 className="font-serif text-white leading-tight tracking-tight text-[clamp(2rem,4.5vw,4rem)] drop-shadow-[0_14px_44px_rgba(0,0,0,0.7)]">
               Custom Furniture
               <br />
@@ -89,7 +92,9 @@ export default function Page() {
             </h1>
           </div>
 
-          {/* ✅ Step Inside VAMA button -> /work (work/page.tsx) */}
+          {/* ✅ Step Inside VAMA button -> /work (work/page.tsx)
+              - Keep on BOTH mobile + desktop
+          */}
           <div className="absolute bottom-6 right-6 md:bottom-10 md:right-10 z-20">
             <Link href="/work" aria-label="Step inside VAMA">
               <button
@@ -115,9 +120,6 @@ export default function Page() {
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Step Inside VAMA{" "}
-                  <span className="transition-transform duration-500 group-hover:translate-x-0.5">
-                    →
-                  </span>
                 </span>
 
                 {/* subtle sheen */}
