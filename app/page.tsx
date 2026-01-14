@@ -18,35 +18,35 @@ const heroFrames = [
 const testimonials = [
   {
     id: 1,
-    name: "Priya Sharma",
-    role: "Homeowner, Jubilee Hills",
+    name: "Srikanth & Sravanthi",
+    role: "Kollur",
     quote:
       "VAMA transformed our entire living space. The attention to detail and craftsmanship exceeded all expectations. Every piece feels like it was made just for us.",
-    image: "/images/tes11.jpeg",
+    image: "/images/sriknsrav.jpeg",
   },
   {
     id: 2,
-    name: "Rajesh Mehta",
-    role: "CEO, TechSpace Solutions",
+    name: "Kumar",
+    role: "Gachibowli",
     quote:
       "Our new office furniture from VAMA has completely changed how our team works. The custom workstations are both functional and stunning.",
     image: "/images/tes22.jpeg",
   },
   {
     id: 3,
-    name: "Ananya & Vikram Reddy",
-    role: "Parents of Two",
+    name: "Sruthi",
+    role: "Gachibowli",
     quote:
       "The kids' room solution was genius. Two children, one room, and somehow VAMA made it feel spacious and organized. Pure magic!",
-    image: "/images/test3.png",
+    image: "/images/sru.jpeg",
   },
   {
     id: 4,
-    name: "Sneha Iyer",
-    role: "Interior Designer",
+    name: "Sirisha",
+    role: "Jubilee Hills",
     quote:
       "As a designer, I'm very particular about quality. VAMA delivers consistently. I recommend them to all my clients without hesitation.",
-    image: "/images/test4.png",
+    image: "/images/tes11.jpeg",
   },
 ];
 
@@ -122,14 +122,14 @@ export default function Page() {
         <section className="relative h-screen w-full overflow-hidden bg-black">
           {/* Mobile video */}
           <div className="absolute inset-0 md:hidden">
-            <video
-              src="/videos/hero-mobile.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="h-full w-full object-cover"
+            {/* ✅ Background image */}
+            <div
+              className="absolute inset-0 bg-center bg-cover"
+              style={{ backgroundImage: "url('/images/mobv.png')" }} // change path if needed
             />
+
+            {/* ✅ Dark overlay for readability */}
+            <div className="absolute inset-0 bg-black/55" />
           </div>
 
           {/* Desktop video */}
@@ -150,10 +150,10 @@ export default function Page() {
           {/* Text overlay */}
           <div className="relative z-10 h-full flex items-center justify-center px-6 text-center">
             <h1 className="font-serif text-white leading-tight tracking-tight text-[clamp(2rem,4.5vw,4rem)]">
-              Whatever you imagine; we make it.
+              Custom Furniture
               <br />
               <span className="block mt-2 text-white/80">
-                From factory to location.
+                Made to Fit Your Life.
               </span>
             </h1>
           </div>
@@ -210,12 +210,12 @@ export default function Page() {
                   Corporate
                 </span>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight text-balance text-[#0B3B38]">
-                  New office, same old furniture won&apos;t work.
+                  We design and manufacture
                 </h2>
                 <p className="text-base md:text-lg text-teal-900/80 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                  We design workstations, chairs and reception areas around how
-                  your team moves, collaborates and focuses — not just how many
-                  seats fit on a plan.
+                  functional, elegant furniture for offices and workspaces. Our
+                  solutions are tailored to improve efficiency, comfort, and
+                  visual harmony.
                 </p>
               </div>
 
@@ -288,12 +288,12 @@ export default function Page() {
                   Residential
                 </span>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight text-balance text-white">
-                  Make your living, dining and bedroom feel like one story.
+                  From living rooms to bedrooms and dining spaces,
                 </h2>
                 <p className="text-base md:text-lg text-teal-50/80 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                  We tailor sofas, beds, storage and more to your rooms, your
-                  light and the way your family actually moves through each
-                  space.
+                  we craft furniture that feels personal and purposeful. Each
+                  piece is custom-built to complement your home’s layout, style,
+                  and daily rhythm.
                 </p>
               </div>
             </div>
@@ -314,12 +314,12 @@ export default function Page() {
                   Kids
                 </span>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight text-balance text-[#0B3B38]">
-                  One room, two kids and too many toys?
+                  Our kids furniture is designed
                 </h2>
                 <p className="text-base md:text-lg text-teal-900/80 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                  We build bunk beds, study zones and smart storage that make
-                  space instead of taking it — so the room works for homework,
-                  play and sleep.
+                  with safety, durability, and imagination in mind. Built to
+                  adapt as children grow, each piece balances playful design
+                  with long-lasting quality.
                 </p>
               </div>
 
@@ -364,8 +364,9 @@ export default function Page() {
               <span className="inline-block text-[0.65rem] md:text-xs tracking-[0.4em] uppercase text-teal-100 font-medium mb-4 md:mb-6 px-4 py-2 border border-teal-100/30 rounded-full backdrop-blur-sm bg-white/5">
                 Testimonials
               </span>
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif leading-tight text-balance">
-                What our clients say.
+              <h2 className="text-3xl md:text-5xl lg:text-3xl font-serif leading-tight text-balance">
+                Our clients value the attention to detail, craftsmanship, and
+                personalized experience we bring to every project.
               </h2>
             </div>
 

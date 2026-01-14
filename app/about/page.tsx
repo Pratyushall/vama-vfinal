@@ -39,13 +39,15 @@ export default function AboutPage() {
           <div className="container mx-auto px-6 max-w-6xl grid md:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-6">
-                Our story begins at the factory.
+                VAMA Living was founded with the belief that furniture should do
+                more than fill a space…
               </h2>
 
               <div className="space-y-4 text-white/80 leading-relaxed">
                 <p>
-                  Founded in Hyderabad, VAMA Living started with a simple
-                  belief: great furniture doesn&apos;t need three middlemen.
+                  Our story begins at the factory. Founded in Hyderabad, VAMA
+                  Living started with a simple belief: great furniture
+                  doesn&apos;t need three middlemen.
                 </p>
                 <p>
                   We design, engineer and build in-house, so what reaches your
@@ -61,7 +63,7 @@ export default function AboutPage() {
 
             <div className="relative h-96 rounded-3xl overflow-hidden border border-white/15">
               <img
-                src="/images/storyy.jpeg"
+                src="/images/vstory.jpeg"
                 alt="VAMA Living Workshop"
                 className="w-full h-full object-cover"
               />

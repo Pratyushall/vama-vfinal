@@ -10,10 +10,11 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
 
+  // ✅ Fix routes exactly as you said
   const navItems = [
-    { href: "/work", label: "Our Products" },
-    { href: "/about", label: "Our Story" },
-    { href: "/contact", label: "Buy from Vama" },
+    { href: "/work", label: "Our Products" }, // work/page.tsx
+    { href: "/about", label: "Our Story" }, // about/page.tsx
+    { href: "/contact", label: "Buy from Vama" }, // contact/page.tsx
   ];
 
   // Close on route change
@@ -21,25 +22,14 @@ export default function Header() {
     setMobileOpen(false);
   }, [pathname]);
 
-  // Close on outside click / ESC
+  // Close on ESC
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") setMobileOpen(false);
     }
-    function onMouseDown(e: MouseEvent) {
-      if (!mobileOpen) return;
-      const panel = panelRef.current;
-      if (!panel) return;
-      if (!panel.contains(e.target as Node)) setMobileOpen(false);
-    }
-
     document.addEventListener("keydown", onKeyDown);
-    document.addEventListener("mousedown", onMouseDown);
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.removeEventListener("mousedown", onMouseDown);
-    };
-  }, [mobileOpen]);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   return (
     <header className="fixed top-4 left-4 right-4 z-50 pointer-events-none">
@@ -53,6 +43,7 @@ export default function Header() {
           shadow-[0_12px_30px_rgba(0,0,0,0.15)]
           px-5 md:px-8 py-2
           relative
+          z-50
         "
         ref={panelRef}
       >
@@ -170,6 +161,7 @@ export default function Header() {
             shadow-[0_22px_70px_rgba(0,0,0,0.22)]
             overflow-hidden
             transition-all duration-300
+            z-[60]
             ${
               mobileOpen
                 ? "opacity-100 translate-y-0 pointer-events-auto"
@@ -197,8 +189,8 @@ export default function Header() {
                   `}
                   onClick={() => setMobileOpen(false)}
                 >
+                  {/* ✅ Removed arrow, and link works */}
                   {item.label}
-                  <span className="text-teal-900/40">→</span>
                 </Link>
               );
             })}
@@ -210,7 +202,7 @@ export default function Header() {
       <div
         className={`
           md:hidden
-          fixed inset-0 z-40
+          fixed inset-0 z-[40]
           transition-opacity duration-300
           ${
             mobileOpen

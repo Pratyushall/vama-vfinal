@@ -159,7 +159,7 @@ const exclusivesCategories: Category[] = [
     slides: [
       { src: "/images/exclusive1.png", alt: "Exclusive 1" },
       { src: "/images/exclusive2.png", alt: "Exclusive 2" },
-      { src: "/images/exclusive3.png", alt: "Exclusive 3" },
+      { src: "/images/exclusive3.jpeg", alt: "Exclusive 3" },
     ],
   },
 ];
