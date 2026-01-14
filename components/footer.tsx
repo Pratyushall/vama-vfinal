@@ -194,7 +194,8 @@ export default function Footer() {
               style={{ textShadow: "0 2px 10px rgba(0,0,0,0.12)" }}
             >
               <div className="space-y-2 text-sm md:text-base text-black">
-                <p>contactvamaliving@gmail.com; +91 89779 09840</p>
+                <p>contactvamaliving@gmail.com</p>
+                <p>+91 89779 09840</p>
                 <p>© VAMA Living. All rights reserved.</p>
               </div>
             </div>

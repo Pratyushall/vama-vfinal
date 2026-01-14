@@ -212,19 +212,7 @@ function FullscreenCarousel({ slides }: { slides: Slide[] }) {
                 className="h-full w-full object-cover"
                 draggable={false}
               />
-
-              {/* ✅ Mobile title overlay (always visible on mobile) */}
-              <div className="absolute inset-0 md:hidden pointer-events-none">
-                {/* transparent-ish overlay so text doesn't merge */}
-                <div className="absolute inset-0 bg-black/25" />
-                <div className="absolute inset-x-0 bottom-0 p-6">
-                  <div className="inline-flex max-w-[90%] rounded-2xl bg-black/20 backdrop-blur-sm px-5 py-3 border border-white/15">
-                    <span className="text-lg font-semibold tracking-wide text-white drop-shadow-[0_8px_22px_rgba(0,0,0,0.65)]">
-                      {slides[i]?.alt ?? "VAMA Living"}
-                    </span>
-                  </div>
-                </div>
-              </div>
+              {/* ✅ Removed mobile bottom overlay text completely */}
             </div>
           ))}
         </div>
